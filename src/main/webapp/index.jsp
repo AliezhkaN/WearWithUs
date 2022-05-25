@@ -119,7 +119,7 @@
 <main>
     <div id="start_block">
         <p>Пориньте у світ стильних та якісних речей разом з нами</p>
-        <button>Розпочати</button>
+        <button data-bs-target="#modal-login" data-bs-toggle="modal" data-bs-dismiss="modal">Розпочати</button>
     </div>
     <div id="newClothes_block">
         <p>Нові речі вже на сайті!</p>
