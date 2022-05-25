@@ -26,9 +26,9 @@
     </a>
 
     <div id="menu">
-        <a class="headerMenu" href="index.html">Головна</a>
-        <a class="headerMenu" href="boys.html">Чоловікам</a>
-        <a class="headerMenu" href="girls.html">Жінкам</a>
+        <a class="headerMenu" href="/application">Головна</a>
+        <a class="headerMenu" href="">Чоловікам</a>
+        <a class="headerMenu" href="girls">Жінкам</a>
     </div>
 
     <div id="acc_bag">
@@ -50,7 +50,7 @@
 <!----------------------------------Account modal window---------------------------------->
 <div class="modal fade" id="modal-login" tabindex="-1" aria-labelledby="modal-login-label" aria-hidden="true">
     <div class="modal-dialog">
-        <div class="modal-content modalWindow">
+        <form class="modal-content modalWindow">
             <button class="btn-close close-modal-btn" data-bs-dismiss="modal" aria-label="close"></button>
             <div class="login-title">
                 ВХІД
@@ -60,48 +60,48 @@
             </div>
             <div class="input-form">
                 <label for="input-form-tel">Номер телефону</label><br>
-                <input id="input-form-tel" type="tel" value="+380">
+                <input id="input-form-tel" required type="tel" value="+380">
             </div>
             <div class="input-form">
                 <label for="input-form-pass">Пароль</label><br>
-                <input id="input-form-pass" type="password">
+                <input id="input-form-pass" required type="password">
             </div>
             <a href="#">Відновлення доступу</a>
 
             <div class="modal-footer-buttons">
                 <button class="signUp" data-bs-target="#modal-registration" data-bs-toggle="modal" data-bs-dismiss="modal"><span class="arrow-left">←</span>РЕЄСТРАЦІЯ</button>
-                <button class="logIn">ВХІД</button>
+                <input type="submit" value="ВХІД" class="logIn">
             </div>
-        </div>
+        </form>
     </div>
 </div>
 
 <div class="modal fade" id="modal-registration" tabindex="-1" aria-labelledby="modal-login-label2" aria-hidden="true">
     <div class="modal-dialog">
-        <div class="modal-content modalWindow" id="registrationWindow">
+        <form method="get" class="modal-content modalWindow" id="registrationWindow">
             <button class="btn-close close-modal-btn" data-bs-dismiss="modal" aria-label="close"></button>
             <div class="login-title" id="signUpTitle">
                 РЕЄСТРАЦІЯ
             </div>
             <div class="input-form">
                 <label for="input-form-tel_reg">Номер телефону</label><br>
-                <input id="input-form-tel_reg" type="tel" value="+380">
+                <input id="input-form-tel_reg" required type="tel" value="+380">
             </div>
             <div class="input-form">
                 <label for="input-form-name_reg">ПІБ</label><br>
-                <input id="input-form-name_reg" type="text">
+                <input id="input-form-name_reg" required type="text">
             </div>
             <div class="input-form">
                 <label for="input-form-pass_reg1">Пароль</label><br>
-                <input id="input-form-pass_reg1" type="password">
+                <input id="input-form-pass_reg1" required type="password">
             </div>
             <div class="input-form">
                 <label for="input-form-pass_reg2">Підтвердіть пароль</label><br>
-                <input id="input-form-pass_reg2" type="password">
+                <input id="input-form-pass_reg2" required type="password">
             </div>
 
             <div class="form-check">
-                <input class="form-check-input checkbox-reg-input" type="checkbox" value="" id="flexCheckDefault">
+                <input class="form-check-input checkbox-reg-input" type="checkbox" value="" required id="flexCheckDefault">
                 <label class="form-check-label checkbox-reg-label" for="flexCheckDefault">
                     Я згоден з умовами використання сайту
                 </label>
@@ -110,9 +110,9 @@
 
             <div class="modal-footer-buttons">
                 <button class="signUp" data-bs-target="#modal-login" data-bs-toggle="modal" data-bs-dismiss="modal"><span class="arrow-left">←</span>ВХІД</button>
-                <button class="logIn">ЗАРЕЄСТРУВАТИСЯ</button>
+                <input type="submit" value="ЗАРЕЄСТРУВАТИСЯ" class="logIn">
             </div>
-        </div>
+        </form>
     </div>
 </div>
 <!------------------------------------------------------------------------------------------->

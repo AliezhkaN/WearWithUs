@@ -76,7 +76,8 @@ div.modalWindow#registrationWindow {
     align-items: center;
 }
 
-.modal-footer-buttons button {
+.modal-footer-buttons button ,
+.modal-footer-buttons input{
     height: 50px;
     width: 50%;
     border: 0;
@@ -93,7 +94,7 @@ button.signUp {
     background-color: #E5E5E5;
 }
 
-button.logIn {
+logIn {
     background-color: #F0C9C9;
 }
 
