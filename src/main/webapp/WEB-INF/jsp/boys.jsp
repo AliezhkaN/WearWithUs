@@ -1,16 +1,17 @@
-<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-<!DOCTYPE html>
+
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
     <meta charset="UTF-8">
+    <link rel="icon" href="./images/t-shirtLogo.png" type="image/x-icon">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
           rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
           crossorigin="anonymous">
-    <link rel="icon" href="./images/t-shirtLogo.png" type="image/x-icon">
-    <title>WearWithUs</title>
+    <title>Boys</title>
     <style>
         <%@include file="/styles/styles.css"%>
         <%@include file="/styles/modal-styles.css"%>
+        <%@include file="/styles/boys_girls_styles.css"%>
     </style>
 </head>
 <body>
@@ -25,9 +26,9 @@
     </a>
 
     <div id="menu">
-        <a class="headerMenu" href="">Головна</a>
-        <a class="headerMenu" href="boys">Чоловікам</a>
-        <a class="headerMenu" href="girls">Жінкам</a>
+        <a class="headerMenu" href="index.html">Головна</a>
+        <a class="headerMenu" href="boys.html">Чоловікам</a>
+        <a class="headerMenu" href="girls.html">Жінкам</a>
     </div>
 
     <div id="acc_bag">
@@ -117,62 +118,50 @@
 <!------------------------------------------------------------------------------------------->
 
 <main>
-    <div id="start_block">
-        <p>Пориньте у світ стильних та якісних речей разом з нами</p>
-        <button>Розпочати</button>
-    </div>
-    <div id="newClothes_block">
-        <p>Нові речі вже на сайті!</p>
-        <div id="items">
-            <img src="./images/newClothes/item1.png" alt="image1">
-            <img src="./images/newClothes/item2.png" alt="image2">
-            <img src="./images/newClothes/item3.png" alt="image3">
+    <div id="news">
+        <div id="t-shirtTitle">
+            <h2>ФУТБОЛКИ</h2>
+        </div>
+        <div id="newsTitle">
+            <h1>НОВИНКИ</h1>
+        </div>
+        <div id="sweatshirtsTitle">
+            <h2>СВІТШОТИ</h2>
         </div>
     </div>
-    <div id="about_block">
-        <div id="our_center">
-            <h3>Наш центр</h3>
-            <table>
-                <tr>
-                    <td><img src="./images/about/phone.png" alt="Phone img"></td>
-                    <td>Телефон</td>
-                    <td>+380 88 888 8888</td>
-                </tr>
-                <tr>
-                    <td><img src="./images/about/mail.png" alt="Mail img"></td>
-                    <td>Пошта</td>
-                    <td>pets.go@gmail.com</td>
-                </tr>
-                <tr>
-                    <td><img src="./images/about/location.png" alt="Location img"></td>
-                    <td>Розташування</td>
-                    <td>Степана Бандери<br>вулиця, 123A</td>
-                </tr>
-                <tr>
-                    <td><img src="./images/about/maps.png" alt="Maps img"></td>
-                    <td>Карти</td>
-                    <td><a target="_blank" id="googleMaps" href="https://goo.gl/maps/t4CcXYu1xads1J3R7">Переглянути на<br>Google Maps</a></td>
-                </tr>
-            </table>
+
+    <div id="t-shirts_block">
+        <div class="item_block">
+            <img class="items" src="./images/boys/t-shirts/1.png" alt="gen_monkey">
+            <div class="signature">
+                <div class="sign_text"><b>Футболка GEN_monkey<br>449 грн.</b></div>
+                <div class="sign_img"><img src="./images/bag.png" alt="buy it"></div>
+            </div>
         </div>
-        <div id="contact_form">
-            <h3>Контактний формуляр</h3>
-            <p>У вас є запитання - у нас є відповіді.<br>Зв’яжіться з нами сьогодні, ми тут, щоб допомогти.</p>
-            <div class="text-field_floating-3">
-                <input class="text-field__input" type="text" id="name" placeholder="Your name">
-                <label class="text-field__label" for="name">Повне ім'я</label>
+        <div class="item_block">
+            <img class="items" src="./images/boys/t-shirts/2.png" alt="vans">
+            <div class="signature">
+                <div class="sign_text"><b>Футболка VANS<br>550 грн.</b></div>
+                <div class="sign_img"><img src="./images/bag.png" alt="buy it"></div>
             </div>
-            <div class="text-field_floating-3">
-                <input class="text-field__input" type="email" id="email" placeholder="Your e-mail">
-                <label class="text-field__label" for="email">Пошта</label>
-            </div>
-            <div class="text-field_floating-3">
-                <input class="text-field__input" type="text" id="message" placeholder="Your message">
-                <label class="text-field__label" for="message">Повідомлення</label>
-            </div>
-            <button>Відправити</button>
         </div>
+        <div class="item_block">
+            <img class="items" src="./images/boys/t-shirts/3.png" alt="nike">
+            <div class="signature">
+                <div class="sign_text"><b>Футболка NIKE<br>700 грн.</b></div>
+                <div class="sign_img"><img src="./images/bag.png" alt="buy it"></div>
+            </div>
+        </div>
+        <div class="item_block">
+            <img class="items" src="./images/boys/t-shirts/4.png" alt="airJordan">
+            <div class="signature">
+                <div class="sign_text"><b>Футболка Air Jordan<br>600 грн.</b></div>
+                <div class="sign_img"><img src="./images/bag.png" alt="buy it"></div>
+            </div>
+        </div>
+
     </div>
+
 </main>
 
 <footer id="footer">
