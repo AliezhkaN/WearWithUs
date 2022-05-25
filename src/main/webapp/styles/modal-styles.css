@@ -1,0 +1,122 @@
+div.modalWindow {
+    margin-top: 25%;
+    background-color: #FFF6F6;
+    border-radius: 0;
+}
+
+div.modalWindow#registrationWindow {
+    margin-top: 18%;
+}
+
+.login-title {
+    padding-top: 20px;
+    margin-right: auto;
+    margin-left: auto;
+    font-size: 30px;
+    letter-spacing: 0.2em;
+
+    color: #502E2E;
+    border-bottom: solid;
+}
+
+.login-title#signUpTitle {
+    margin-bottom: 35px;
+}
+
+.login-title.subscription {
+    letter-spacing: 0.1em;
+    font-size: 15px;
+    border: 0;
+    padding: 30px;
+}
+
+.input-form {
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 25px;
+}
+
+.input-form label {
+    letter-spacing: 0.1em;
+    color: dimgray;
+    font-size: 14px
+}
+
+.input-form input {
+    border: 0;
+    border-bottom: solid 0.12em;
+    outline: none;
+    background-color: #FFF6F6;
+}
+
+.modal-content a {
+    color: #502E2E;
+    letter-spacing: 0.08em;
+    font-size: 14px;
+    text-decoration: none;
+
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 25px;
+}
+
+.modal-content a:hover {
+    color: #c26d00;
+}
+
+.close-modal-btn {
+    position: absolute;
+    right: 5px;
+    top: 5px;
+}
+
+.modal-footer-buttons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-footer-buttons button {
+    height: 50px;
+    width: 50%;
+    border: 0;
+    font-family: 'Rubik', sans-serif;
+    font-weight: 500;
+    letter-spacing: 0.03em;
+}
+
+.modal-footer-buttons button:hover {
+    font-weight: bold;
+}
+
+button.signUp {
+    background-color: #E5E5E5;
+}
+
+button.logIn {
+    background-color: #F0C9C9;
+}
+
+span.arrow-left {
+    font-size: 25px;
+    margin-right: 15px;
+}
+
+.form-check {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.checkbox-reg-input:checked{
+    background-color: #502E2E;
+    border-color: #6c3a3a;
+}
+
+.checkbox-reg-label {
+    color: #502E2E;
+    letter-spacing: 0.08em;
+    font-size: 14px;
+    text-decoration: none;
+
+    margin-bottom: 13px;
+}
