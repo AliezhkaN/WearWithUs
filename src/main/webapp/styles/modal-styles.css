@@ -86,15 +86,16 @@ div.modalWindow#registrationWindow {
     letter-spacing: 0.03em;
 }
 
-.modal-footer-buttons button:hover {
+.modal-footer-buttons button:hover,
+.modal-footer-buttons input:hover{
     font-weight: bold;
 }
 
-button.signUp {
+button.signUp,input.signUp {
     background-color: #E5E5E5;
 }
 
-logIn {
+input.logIn,button.logIn {
     background-color: #F0C9C9;
 }
 

@@ -1,4 +1,4 @@
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -131,34 +131,43 @@
     </div>
 
     <div id="t-shirts_block">
-        <div class="item_block">
-            <img class="items" src="./images/girls/t-shirts/1.png" alt="gen_monkey">
-            <div class="signature">
-                <div class="sign_text"><b>Футболка Ukraine<br>350 грн.</b></div>
-                <div class="sign_img"><img src="./images/bag.png" alt="buy it"></div>
-            </div>
-        </div>
-        <div class="item_block">
-            <img class="items" src="./images/girls/t-shirts/2.png" alt="vans">
-            <div class="signature">
-                <div class="sign_text"><b>Футболка PUMA<br>550 грн.</b></div>
-                <div class="sign_img"><img src="./images/bag.png" alt="buy it"></div>
-            </div>
-        </div>
-        <div class="item_block">
-            <img class="items" src="./images/girls/t-shirts/3.png" alt="nike">
-            <div class="signature">
-                <div class="sign_text"><b>Футболка NB<br>450 грн.</b></div>
-                <div class="sign_img"><img src="./images/bag.png" alt="buy it"></div>
-            </div>
-        </div>
-        <div class="item_block">
-            <img class="items" src="./images/girls/t-shirts/4.png" alt="airJordan">
-            <div class="signature">
-                <div class="sign_text"><b>Футболка Adidas<br>349 грн.</b></div>
-                <div class="sign_img"><img src="./images/bag.png" alt="buy it"></div>
-            </div>
-        </div>
+        <c:forEach var="product" items="${products}">
+                    <div class="item_block">
+                        <img class="items" src="<c:out value="${product.src}"/> " alt="gen_monkey">
+                        <div class="signature">
+                            <div class="sign_text"><b><c:out value="${product.name}"/><br><c:out value="${product.price}"/> грн.</b></div>
+                            <div class="sign_img"><img src="./images/bag.png" alt="buy it"></div>
+                        </div>
+                    </div>
+        </c:forEach>
+<%--        <div class="item_block">--%>
+<%--            <img class="items" src="./images/girls/t-shirts/1.png" alt="gen_monkey">--%>
+<%--            <div class="signature">--%>
+<%--                <div class="sign_text"><b>Футболка Ukraine<br>350 грн.</b></div>--%>
+<%--                <div class="sign_img"><img src="./images/bag.png" alt="buy it"></div>--%>
+<%--            </div>--%>
+<%--        </div>--%>
+<%--        <div class="item_block">--%>
+<%--            <img class="items" src="./images/girls/t-shirts/2.png" alt="vans">--%>
+<%--            <div class="signature">--%>
+<%--                <div class="sign_text"><b>Футболка PUMA<br>550 грн.</b></div>--%>
+<%--                <div class="sign_img"><img src="./images/bag.png" alt="buy it"></div>--%>
+<%--            </div>--%>
+<%--        </div>--%>
+<%--        <div class="item_block">--%>
+<%--            <img class="items" src="./images/girls/t-shirts/3.png" alt="nike">--%>
+<%--            <div class="signature">--%>
+<%--                <div class="sign_text"><b>Футболка NB<br>450 грн.</b></div>--%>
+<%--                <div class="sign_img"><img src="./images/bag.png" alt="buy it"></div>--%>
+<%--            </div>--%>
+<%--        </div>--%>
+<%--        <div class="item_block">--%>
+<%--            <img class="items" src="./images/girls/t-shirts/4.png" alt="airJordan">--%>
+<%--            <div class="signature">--%>
+<%--                <div class="sign_text"><b>Футболка Adidas<br>349 грн.</b></div>--%>
+<%--                <div class="sign_img"><img src="./images/bag.png" alt="buy it"></div>--%>
+<%--            </div>--%>
+<%--        </div>--%>
     </div>
 
 </main>
