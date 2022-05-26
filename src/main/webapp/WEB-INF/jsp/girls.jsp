@@ -120,13 +120,13 @@
 <main>
     <div id="news">
         <div id="t-shirtTitle">
-            <h2>ФУТБОЛКИ</h2>
+            <a href="girls?type=t">ФУТБОЛКИ</a>
         </div>
         <div id="newsTitle">
             <h1>НОВИНКИ</h1>
         </div>
         <div id="sweatshirtsTitle">
-            <h2>СВІТШОТИ</h2>
+            <a href="girls?type=s">СВІТШОТИ</a>
         </div>
     </div>
 
