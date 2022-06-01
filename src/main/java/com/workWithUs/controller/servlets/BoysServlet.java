@@ -1,4 +1,4 @@
-package com.workWithUs.controller;
+package com.workWithUs.controller.servlets;
 
 import com.workWithUs.modal.ConnectionPool;
 import com.workWithUs.modal.ProductDAO;

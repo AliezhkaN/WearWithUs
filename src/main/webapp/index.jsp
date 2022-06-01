@@ -49,7 +49,7 @@
 <!----------------------------------Account modal window---------------------------------->
 <div class="modal fade" id="modal-login" tabindex="-1" aria-labelledby="modal-login-label" aria-hidden="true">
     <div class="modal-dialog">
-        <form class="modal-content modalWindow">
+        <form action="login" method="post" class="modal-content modalWindow">
             <button class="btn-close close-modal-btn" data-bs-dismiss="modal" aria-label="close"></button>
             <div class="login-title">
                 ВХІД
@@ -58,12 +58,12 @@
                 ЧЕРЕЗ АКАУНТ WearWithUS
             </div>
             <div class="input-form">
-                <label for="input-form-tel">Номер телефону</label><br>
-                <input id="input-form-tel" required type="tel" value="+380">
+                <label for="input-form-email">Електронна пошта</label><br>
+                <input id="input-form-email" name="email" required type="email" >
             </div>
             <div class="input-form">
                 <label for="input-form-pass">Пароль</label><br>
-                <input id="input-form-pass" required type="password">
+                <input id="input-form-pass" name="password" required type="password">
             </div>
             <a href="#">Відновлення доступу</a>
 
@@ -77,26 +77,30 @@
 
 <div class="modal fade" id="modal-registration" tabindex="-1" aria-labelledby="modal-login-label2" aria-hidden="true">
     <div class="modal-dialog">
-        <form method="get" class="modal-content modalWindow" id="registrationWindow">
+        <form method="post" action="signUp" class="modal-content modalWindow" id="registrationWindow">
             <button class="btn-close close-modal-btn" data-bs-dismiss="modal" aria-label="close"></button>
             <div class="login-title" id="signUpTitle">
                 РЕЄСТРАЦІЯ
             </div>
             <div class="input-form">
-                <label for="input-form-tel_reg">Номер телефону</label><br>
-                <input id="input-form-tel_reg" required type="tel" value="+380">
+                <label for="input-form-email_reg">Електронна пошта</label><br>
+                <input id="input-form-email_reg" name="email" required type="email" >
             </div>
             <div class="input-form">
                 <label for="input-form-name_reg">ПІБ</label><br>
-                <input id="input-form-name_reg" required type="text">
+                <input id="input-form-name_reg" name="fullName" required type="text">
+            </div>
+            <div class="input-form">
+                <label for="input-form-tel_reg">Номер телефону</label><br>
+                <input id="input-form-tel_reg" name="phone" maxlength="14" required type="tel" value="+380">
             </div>
             <div class="input-form">
                 <label for="input-form-pass_reg1">Пароль</label><br>
-                <input id="input-form-pass_reg1" required type="password">
+                <input id="input-form-pass_reg1" name="password" required type="password">
             </div>
             <div class="input-form">
                 <label for="input-form-pass_reg2">Підтвердіть пароль</label><br>
-                <input id="input-form-pass_reg2" required type="password">
+                <input id="input-form-pass_reg2" name="confirm" required type="password">
             </div>
 
             <div class="form-check">

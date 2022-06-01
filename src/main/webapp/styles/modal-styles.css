@@ -47,6 +47,7 @@ div.modalWindow#registrationWindow {
     border-bottom: solid 0.12em;
     outline: none;
     background-color: #FFF6F6;
+    width: 40vh;
 }
 
 .modal-content a {

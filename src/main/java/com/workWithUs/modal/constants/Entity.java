@@ -5,8 +5,7 @@ public final class Entity {
     public static final String ENTITY__ID = "id";
     public static final String USER__EMAIL = "email";
     public static final String USER__PASSWORD = "password";
-    public static final String USER__FIRST_NAME = "first_name";
-    public static final String USER__LAST_NAME = "last_name";
+    public static final String USER__FULL_NAME = "full_name";
     public static final String USER__PHONE_NUMBER = "phone";
     public static final String USER__ROLE = "role";
     public static final String USER__IS__BLOCKED = "is_blocked";
