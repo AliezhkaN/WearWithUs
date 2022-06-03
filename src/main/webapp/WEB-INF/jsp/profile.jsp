@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
@@ -10,7 +11,9 @@
     <title>WearWithUs</title>
     <style>
         <%@include file="/styles/styles.css"%>
+        <%@include file="/styles/visibility.css"%>
         <%@include file="/styles/profile.css"%>
+        <%@include file="/styles/modal-styles.css"%>
     </style>
 </head>
 
@@ -19,7 +22,7 @@
 <body>
 <div class="wrapper">
 <header>
-    <a id="logoLink" href="index.html">
+    <a id="logoLink" href="/application">
         <div id="logo">
             <img id="t-shirtLogo" src="./images/t-shirtLogo.png" alt="T-shirt img">
             <span class="name">
@@ -35,10 +38,10 @@
     </div>
 
     <div id="acc_bag">
-        <a class="acc_bag_links">
-            <div id="account_block" data-bs-toggle="modal" data-bs-target="#modal-login">
-                <img src="./images/account.png" alt="Account img">
-                <p class="acc_bag_text">Акаунт</p>
+        <a class="acc_bag_links" href="logout">
+            <div class="account_block"  >
+                <img src="./images/account.png" alt="Account img" style="padding-left: 12px!important;">
+                <p class="acc_bag_text">Вийти</p>
             </div>
         </a>
         <a class="acc_bag_links">
@@ -49,7 +52,167 @@
         </a>
     </div>
 </header>
-<main style="flex: 1 1 auto"></main>
+<main style="flex: 1 1 auto">
+    <section class="avatar__container">
+        <div class="avatar-container">
+            <img src="${user.avatar}" alt="ss">
+        </div>
+        <p class="image-edit" data-bs-toggle="modal" data-bs-target="#modal-image">змінити</p>
+    </section>
+    <section class="profile__container">
+        <div class="profile__info-container">
+            <div class="profile__title-container">
+                <div class="profile__title">
+                    <span>Інформація про Користувача</span>
+                </div>
+                <div id="email-p" class="profile__email">
+                    <div class="name__name">Е. Пошта</div>
+                    <div class="name__value">
+                            <span>
+                                <c:out value="${user.email}"/>
+                            </span>
+                    </div>
+                    <div class="name__edit">
+                        <a>Змінити</a>
+                    </div>
+                </div>
+                <form id="email-i" class="profile__email hide" action="changeEmail" method="post">
+                    <div class="name__name">Електронна пошта</div>
+                    <div class="name__value__edit">
+                        <div class="name__name">
+                            <p>You will be required to login again after changing your email address.</p>
+                        </div>
+                        <div id="new_email_label" class="hide">
+                            <label for="new_email">New email address</label>
+                        </div>
+                        <div>
+                            <input autocomplete id="new_email" required placeholder="New email address" name="newEmail" type="email" class="input black">
+                        </div>
+                        <div id="confirm_new_email_label" class="hide">
+                            <label for="confirm_new_email">Confirm new email address</label>
+                        </div>
+                        <div>
+                            <input autocomplete id="confirm_new_email" required placeholder="Confirm new email" name="confirmNewEmail" type="email" class="input black">
+                        </div>
+                        <div id="confirm_password_label" class="hide">
+                            <label for="confirm_password">Confirm password</label>
+                        </div>
+                        <div>
+                            <input autocomplete id="confirm_password" required placeholder="Confirm password" name="confirmPassword" type="password" class="input black">
+                        </div>
+                        <div class="buttons_container">
+                            <div class="buttons">
+                                <input class="button" type="submit" value="Save">
+                                <button type="button" id="email_cancel_button" class="button cancel_button">Cancel</button>
+                            </div>
+                        </div>
+
+                        <div class="error__message__wrapper">
+                            <c:if test="${changeEmailMessage != null}">
+                                    <span id="email-error">
+                                        <c:out value="${changeEmailMessage}"/>
+                                    </span>
+                            </c:if>
+                        </div>
+
+                    </div>
+                </form>
+
+                <div id="password-p" class="profile__email">
+                    <div class="name__name">Пароль</div>
+                    <div class="name__value">
+                        <span>******</span>
+                    </div>
+                    <div class="name__edit">
+                        <a>Змінити</a>
+                    </div>
+                </div>
+                <form id="password-i" class="profile__email hide" action="changePassword" method="post">
+                    <div class="name__name">Пароль</div>
+                    <div class="name__value__edit">
+                        <div class="name__name">
+                            <p>You will be required to login again after changing your email address.</p>
+                        </div>
+                        <div id="current_password_label" class="hide">
+                            <label for="current_password">Current password</label>
+                        </div>
+                        <div>
+                            <input autocomplete id="current_password" required placeholder="Current password" name="currentPassword" type="password" class="input black">
+                        </div>
+                        <div id="new_password_label" class="hide">
+                            <label for="new_password">New password</label>
+                        </div>
+                        <div>
+                            <input autocomplete id="new_password" required placeholder="New password" name="newPassword" type="password" class="input black">
+                        </div>
+                        <div id="confirm_new_password_label" class="hide">
+                            <label for="confirm_new_password">Confirm new password</label>
+                        </div>
+                        <div>
+                            <input autocomplete id="confirm_new_password" required placeholder="Confirm new password" name="confirmNewPassword" type="password" class="input black">
+                        </div>
+                        <div class="buttons_container">
+                            <div class="buttons">
+                                <input class="button" type="submit" value="Save">
+                                <button type="button" id="password_cancel_button" class="button cancel_button">Cancel</button>
+                            </div>
+                        </div>
+                        <div class="error__message__wrapper">
+                            <c:if test="${changePasswordMessage != null}">
+                                    <span id="password-error">
+                                        <c:out value="${changePasswordMessage}"/>
+                                    </span>
+                            </c:if>
+                        </div>
+                    </div>
+                </form>
+                <div class="profile__title margin-t-3">
+                    <span>Персональні дані</span>
+                </div>
+                <div id="fullname-p" class="profile__email">
+                    <div class="name__name">ПІБ</div>
+                    <div class="name__value">
+                        <span><c:out value="${user.fullName}"/></span>
+                    </div>
+                    <div class="name__edit">
+                        <a>Змінити</a>
+                    </div>
+                </div>
+                <form id="fullname-i" class="profile__email hide" action="changeFullName" method="post">
+                    <div class="name__name">Full name</div>
+                    <div class="name__value__edit">
+
+                        <div id="first_name_label" class="hide">
+                            <label for="first_name">ПІБ</label>
+                        </div>
+                        <div>
+                            <input autocomplete  id="first_name" required placeholder="ПІБ"
+                                   name="fullName" type="text" class="input black"
+                                   value="${user.fullName}">
+                        </div>
+                        <div class="buttons_container">
+                            <div class="buttons">
+                                <input class="button" type="submit" value="Save">
+                                <button type="button" id="fullname_cancel_button" class="button cancel_button">Cancel</button>
+                            </div>
+                        </div>
+                        <div class="error__message__wrapper">
+                                    <span id="fullName-error">
+
+                                    </span>
+                        </div>
+                    </div>
+                </form>
+                <div class="profile__email margin-bottom-5">
+                    <div class="name__name">Тел. номер</div>
+                    <div class="name__value">
+                        <span><c:out value="${user.phoneNumber}"/></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
 <footer id="footer">
     <div id="empty"></div>
     <div class="footer-container">
@@ -78,6 +241,39 @@
         </div>
     </div>
 </footer>
+
+    <div class="modal fade" id="modal-image" tabindex="-1" aria-labelledby="modal-login-label3" aria-hidden="true">
+        <div class="modal-dialog">
+            <form action="avatarEdit" method="post" class="modal-content modalWindow" id="imageWindow">
+                <button class="btn-close close-modal-btn" data-bs-dismiss="modal" style="flex: 1 1 auto" aria-label="close"></button>
+                <div class="login-title" id="signUpTitle">
+                    Зміна Фото
+                </div>
+                <div class="i-container">
+                    <div style="" id="image_label" class="hide">
+                        <label for="image-src">Last name</label>
+                    </div>
+                    <div>
+                        <input autocomplete id="image-src" required placeholder="image src"
+                               name="avatar" type="text" class="input black"
+                               value="">
+                    </div>
+                </div>
+
+                <div class="modal-footer-buttons">
+
+                    <input type="submit" value="ЗМІНИТИ" class="logIn" style="width: 100%;">
+                </div>
+            </form>
+        </div>
+    </div>
+
 </div>
+<script type="text/javascript">
+    <%@include file="/js/profile.js" %>
+</script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
 </body>
 </html>

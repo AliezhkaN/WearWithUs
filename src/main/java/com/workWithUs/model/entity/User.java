@@ -1,4 +1,4 @@
-package com.workWithUs.modal.entity;
+package com.workWithUs.model.entity;
 
 public class User {
 
@@ -9,6 +9,7 @@ public class User {
     private String phoneNumber;
     private Role role;
     private Boolean isBlocked;
+    private String avatar;
 
     public static class Builder {
 
@@ -55,6 +56,11 @@ public class User {
                 if (value.equalsTo(roleName)) role = value;
             }
             person.role = role;
+            return this;
+        }
+
+        public Builder withAvatar(String avatar){
+            person.avatar = avatar;
             return this;
         }
 
@@ -118,6 +124,14 @@ public class User {
 
     public void setBlocked(Boolean blocked) {
         isBlocked = blocked;
+    }
+
+    public String getAvatar() {
+        return avatar;
+    }
+
+    public void setAvatar(String avatar) {
+        this.avatar = avatar;
     }
 
     @Override

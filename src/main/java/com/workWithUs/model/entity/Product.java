@@ -1,6 +1,4 @@
-package com.workWithUs.modal.entity;
-
-import java.sql.Timestamp;
+package com.workWithUs.model.entity;
 
 public class Product {
 

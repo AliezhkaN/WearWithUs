@@ -1,9 +1,9 @@
 package com.workWithUs.controller.servlets;
 
-import com.workWithUs.modal.ConnectionPool;
-import com.workWithUs.modal.ProductDAO;
-import com.workWithUs.modal.entity.Product;
-import com.workWithUs.modal.entity.Type;
+import com.workWithUs.model.ConnectionPool;
+import com.workWithUs.model.ProductDAO;
+import com.workWithUs.model.entity.Product;
+import com.workWithUs.model.entity.Type;
 
 import javax.servlet.*;
 import javax.servlet.http.*;

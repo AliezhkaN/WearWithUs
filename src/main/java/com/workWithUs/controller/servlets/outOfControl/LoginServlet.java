@@ -1,9 +1,9 @@
 package com.workWithUs.controller.servlets.outOfControl;
 
-import com.workWithUs.modal.ConnectionPool;
-import com.workWithUs.modal.UserDAO;
-import com.workWithUs.modal.entity.Role;
-import com.workWithUs.modal.entity.User;
+import com.workWithUs.model.ConnectionPool;
+import com.workWithUs.model.UserDAO;
+import com.workWithUs.model.entity.Role;
+import com.workWithUs.model.entity.User;
 import com.workWithUs.util.Encryption;
 
 import javax.servlet.*;
@@ -36,7 +36,8 @@ public class LoginServlet extends HttpServlet {
                 User user = userDAO.getUser(email, encryptedPassword, connection);
                 if(user != null){
                     if(user.getBlocked() == false){
-                        session.setAttribute("user", user);
+                        session.setAttribute("userId", user.getId());
+                        session.setAttribute("role",user.getRole());
                         role = user.getRole();
                         moveToPage(request, response,role);
                     }else {

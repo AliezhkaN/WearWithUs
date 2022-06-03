@@ -1,4 +1,4 @@
-package com.workWithUs.modal.entity;
+package com.workWithUs.model.entity;
 
 public enum Role {
     CUSTOMER("CUSTOMER"), ADMIN("ADMIN"), UNKNOWN("UNKNOWN");

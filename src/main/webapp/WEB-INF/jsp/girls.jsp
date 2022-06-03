@@ -16,7 +16,7 @@
 </head>
 <body>
 <header>
-    <a id="logoLink" href="index.html">
+    <a id="logoLink" href="/application">
         <div id="logo">
             <img id="t-shirtLogo" src="./images/t-shirtLogo.png" alt="T-shirt img">
             <span class="name">
@@ -32,12 +32,24 @@
     </div>
 
     <div id="acc_bag">
-        <a class="acc_bag_links">
-            <div id="account_block" data-bs-toggle="modal" data-bs-target="#modal-login">
-                <img src="./images/account.png" alt="Account img">
-                <p class="acc_bag_text">Акаунт</p>
-            </div>
-        </a>
+        <c:choose>
+            <c:when test="${userId != null}">
+                <a class="acc_bag_links" href="profile">
+                    <div class="account_block">
+                        <img src="./images/account.png" alt="Account img">
+                        <p class="acc_bag_text">Акаунт</p>
+                    </div>
+                </a>
+            </c:when>
+            <c:otherwise>
+                <a class="acc_bag_links">
+                    <div class="account_block" data-bs-toggle="modal" data-bs-target="#modal-login">
+                        <img src="./images/account.png" alt="Account img">
+                        <p class="acc_bag_text">Акаунт</p>
+                    </div>
+                </a>
+            </c:otherwise>
+        </c:choose>
         <a class="acc_bag_links">
             <div id="bag_block">
                 <img src="./images/bag.png" alt="Bag img">
@@ -48,7 +60,7 @@
 </header>
 
 <!----------------------------------Account modal window---------------------------------->
-<div class="modal fade" id="modal-login" tabindex="-1" aria-labelledby="modal-login-label" aria-hidden="true">
+<div class="modal pfade" id="modal-login" tabindex="-1" aria-labelledby="modal-login-label" aria-hidden="true">
     <div class="modal-dialog">
         <form action="login" method="post" class="modal-content modalWindow">
             <button class="btn-close close-modal-btn" data-bs-dismiss="modal" aria-label="close"></button>
@@ -76,7 +88,7 @@
     </div>
 </div>
 
-<div class="modal fade" id="modal-registration" tabindex="-1" aria-labelledby="modal-login-label2" aria-hidden="true">
+<div class="modal pfade" id="modal-registration" tabindex="-1" aria-labelledby="modal-login-label2" aria-hidden="true">
     <div class="modal-dialog">
         <form method="post" action="signUp" class="modal-content modalWindow" id="registrationWindow">
             <button class="btn-close close-modal-btn" data-bs-dismiss="modal" aria-label="close"></button>

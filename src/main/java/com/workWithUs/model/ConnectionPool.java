@@ -1,4 +1,4 @@
-package com.workWithUs.modal;
+package com.workWithUs.model;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;

@@ -1,4 +1,4 @@
-package com.workWithUs.controller.servlets;
+package com.workWithUs.controller.servlets.common.userEdit;
 
 import com.workWithUs.model.ConnectionPool;
 import com.workWithUs.model.UserDAO;
@@ -11,27 +11,30 @@ import java.io.IOException;
 import java.sql.Connection;
 import java.sql.SQLException;
 
-@WebServlet(name = "profile", value = "/profile")
-public class ProfileServlet extends HttpServlet {
+@WebServlet(name = "avatarEdit", value = "/avatarEdit")
+public class AvatarEditServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        HttpSession session = request.getSession();
-        ConnectionPool connectionPool = ConnectionPool.getInstance();
-        UserDAO userDAO = UserDAO.getInstance();
-
-        int id = (int) session.getAttribute("userId");
-        try (Connection connection = connectionPool.getConnection()){
-            User user = userDAO.getUser(id,connection);
-            request.setAttribute("user",user);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-
-        request.getRequestDispatcher("WEB-INF/jsp/profile.jsp").forward(request,response);
+        response.sendError(404);
     }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        ConnectionPool connectionPool = ConnectionPool.getInstance();
+        UserDAO userDAO = UserDAO.getInstance();
+        HttpSession session = request.getSession();
+        int id = (int) session.getAttribute("userId");
+        String avatar = request.getParameter("avatar");
 
+        try (Connection connection = connectionPool.getConnection()){
+            User user = userDAO.getUser(id,connection);
+            user.setAvatar(avatar);
+            userDAO.updateUser(user,connection);
+
+        } catch (SQLException e) {
+                    e.printStackTrace();
+        }
+
+        response.sendRedirect("profile");
     }
 }

@@ -1,8 +1,8 @@
 package com.workWithUs.controller.servlets;
 
-import com.workWithUs.modal.ConnectionPool;
-import com.workWithUs.modal.UserDAO;
-import com.workWithUs.modal.entity.User;
+import com.workWithUs.model.ConnectionPool;
+import com.workWithUs.model.UserDAO;
+import com.workWithUs.model.entity.User;
 import com.workWithUs.util.Encryption;
 
 import javax.servlet.*;
@@ -24,7 +24,7 @@ public class SignUpServlet extends HttpServlet {
 
         ConnectionPool connectionPool = ConnectionPool.getInstance();
         UserDAO userDAO = UserDAO.getInstance();
-
+        HttpSession session = request.getSession();
         String email = request.getParameter("email");
         String fullName =request.getParameter("fullName");
         String phoneNumber =request.getParameter("phone");
@@ -41,8 +41,11 @@ public class SignUpServlet extends HttpServlet {
                     .withPassword(encryptedPassword)
                     .build();
 
-            userDAO.insertUser(newUser,connection);
-
+            int id = userDAO.insertUser(newUser,connection);
+                newUser = userDAO.getUser(id,connection);
+                session.setAttribute("userId",newUser.getId());
+                session.setAttribute("role",newUser.getRole());
+            response.sendRedirect("profile");
             } catch (SQLException e) {
                 e.printStackTrace();
             }

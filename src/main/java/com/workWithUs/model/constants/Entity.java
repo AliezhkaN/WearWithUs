@@ -1,4 +1,4 @@
-package com.workWithUs.modal.constants;
+package com.workWithUs.model.constants;
 
 public final class Entity {
 
@@ -9,6 +9,7 @@ public final class Entity {
     public static final String USER__PHONE_NUMBER = "phone";
     public static final String USER__ROLE = "role";
     public static final String USER__IS__BLOCKED = "is_blocked";
+    public static final String USER__AVATAR = "avatar";
 
 
 

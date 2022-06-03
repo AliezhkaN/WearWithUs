@@ -1,6 +1,6 @@
-package com.workWithUs.modal;
+package com.workWithUs.model;
 
-import com.workWithUs.modal.entity.Product;
+import com.workWithUs.model.entity.Product;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -9,7 +9,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.workWithUs.modal.constants.Entity.*;
+import static com.workWithUs.model.constants.Entity.*;
 
 public class ProductDAO {
 

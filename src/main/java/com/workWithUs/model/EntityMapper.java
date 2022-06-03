@@ -1,4 +1,4 @@
-package com.workWithUs.modal;
+package com.workWithUs.model;
 
 import java.sql.ResultSet;
 

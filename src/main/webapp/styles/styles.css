@@ -65,7 +65,7 @@ div#acc_bag {
     margin-left: 3%;
 }
 
-#account_block img {
+.account_block img {
     padding-left: 15px;
     margin-top: 3px;
     height: 35px;

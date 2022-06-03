@@ -1,6 +1,228 @@
+@import url('https://fonts.googleapis.com/css2?family=Rubik:wght@300&display=swap');
 .wrapper{
     min-height: 100%;
     overflow: hidden;
     display: flex;
     flex-direction: column;
+}
+
+[class*="__container"]{
+    max-width: 1057px;
+    margin: 0px auto;
+}
+
+.profile__container{
+    min-height: 40vh;
+    display: flex;
+    justify-content: center;
+    font-family: Rubik;
+    min-width: 50vh;
+}
+
+.profile__info-container{
+    height: 100%;
+    min-width: 60%;
+}
+
+.profile__title{
+    min-height: 5vh;
+    border-bottom: 2px solid #282727;
+    display: flex;
+    align-items: center;
+    font-size: 22px;
+    font-weight: 500;
+    font-family: Rubik;
+}
+
+.profile__email{
+    min-height: 5vh;
+    display: flex;
+    flex-direction: row;
+    border-bottom: 2px solid ;
+}
+
+.name__name{
+
+    font-size: 20px;
+    font-weight: 500;
+    display: flex;
+    align-items:center;
+    min-width: 30%;
+    max-height: 7vh;
+}
+
+.name__name p{
+    margin-top: 2vh;
+    font-weight: 400;
+    font-size: 18px;
+}
+
+.name__value{
+    flex: 1 1 auto;
+    display: flex;
+    align-items:center;
+}
+
+.name__value__edit{
+    margin-top: 1.5vh;
+    flex: 1 1 auto;
+    display: flex;
+    flex-direction: column;
+}
+
+.name__value span{
+    font-size: 20px;
+    font-weight: 500;
+}
+
+.name__edit{
+    flex: 0 0 50px;
+    font-size: 20px;
+    font-weight: 500;
+    display: flex;
+    align-items:center;
+}
+
+.name__edit:hover{
+    color: #f57c84;
+}
+
+.name__edit a{
+    cursor: pointer;
+}
+
+
+.name__value__edit label{
+    margin-top: 1vh;
+    font-family: Rubik;
+    font-size: 18px;
+    font-weight: 500;
+}
+
+
+
+
+.buttons_container{
+    display: flex;
+    justify-content: center;
+    min-height: 7vh;
+    max-width:70%;
+}
+
+.cancel_button{
+    background-color:burlywood!important;
+}
+
+.error__message__wrapper{
+    max-width:70%;
+    min-height: 5vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: Rubik;
+    font-size: 18px;
+    font-weight: 500;
+    color: #EC5863;
+}
+
+
+
+.margin-t-3{
+    margin-top: 3vh;
+}
+
+.margin-bottom-5{
+    margin-bottom: 5vh;
+}
+
+.input{
+    min-width:70%;
+    font-family: Rubik;
+    height: 5vh;
+    margin-bottom: 3vh;
+    border:none;
+    border-bottom: 2px solid #000;
+    background:none;
+    font-weight: 500;
+    font-size: 20px;
+    color:#000;
+}
+
+.input:focus{
+    outline: none;
+}
+
+.input:focus::placeholder {
+    color: transparent;
+}
+
+.red{
+    outline: none !important;
+    border-color: #EC5863;
+}
+
+.black{
+    outline: none !important;
+    border-color: #000000;
+}
+
+.button{
+    font-family: Raleway;
+    font-weight: 800;
+    font-size: 14px;
+    line-height: 1.2;
+    letter-spacing: 0.14rem;
+    color:white;
+    padding: 15px 30px;
+    background-color: #EC5863;
+    border-radius: 10px;
+    transition: background-color 0.3s ease 0s;
+    border:none;
+    cursor: pointer;
+}
+
+.button:hover{
+    background-color: #f57c84;
+    transform: translateY(-5px);
+    transition: 0.4s ease-out;
+}
+
+.avatar__container{
+    height: 33vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.avatar-container{
+    height: 25vh;
+    width: 25vh;
+    border-radius: 50%;
+    overflow: hidden;
+}
+
+.avatar-container img{
+    height: 100%;
+    width: 100%;
+}
+
+.image-edit{
+    margin-top: 1vh;
+    font-size: 20px;
+    font-family: Rubik;
+}
+
+.image-edit:hover{
+    cursor: pointer;
+    color: #EC5863;
+    font-size: 18px;
+}
+
+.i-container{
+    margin-right: auto;
+    margin-left: 5vh;
+    height: 10vh;
+    width: 80vh;
+
 }
