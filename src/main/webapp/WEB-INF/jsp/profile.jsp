@@ -8,12 +8,15 @@
           rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
           crossorigin="anonymous">
     <link rel="icon" href="./images/t-shirtLogo.png" type="image/x-icon">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@7.12.15/dist/sweetalert2.all.min.js"></script>
+    <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/sweetalert2@7.12.15/dist/sweetalert2.min.css'>
     <title>WearWithUs</title>
     <style>
         <%@include file="/styles/styles.css"%>
         <%@include file="/styles/visibility.css"%>
         <%@include file="/styles/profile.css"%>
         <%@include file="/styles/modal-styles.css"%>
+        <%@include file="/styles/sidebar.css"%>
     </style>
 </head>
 
@@ -80,25 +83,25 @@
                     <div class="name__name">Електронна пошта</div>
                     <div class="name__value__edit">
                         <div class="name__name">
-                            <p>You will be required to login again after changing your email address.</p>
+                            <p>Після зміни адреси електронної пошти вам потрібно буде увійти знову.</p>
                         </div>
                         <div id="new_email_label" class="hide">
-                            <label for="new_email">New email address</label>
+                            <label for="new_email">Нова електронна пошта</label>
                         </div>
                         <div>
-                            <input autocomplete id="new_email" required placeholder="New email address" name="newEmail" type="email" class="input black">
+                            <input autocomplete id="new_email" required placeholder="Нова електронна пошта" name="newEmail" type="email" class="input black">
                         </div>
                         <div id="confirm_new_email_label" class="hide">
-                            <label for="confirm_new_email">Confirm new email address</label>
+                            <label for="confirm_new_email">Підтвердження електронної пошти</label>
                         </div>
                         <div>
-                            <input autocomplete id="confirm_new_email" required placeholder="Confirm new email" name="confirmNewEmail" type="email" class="input black">
+                            <input autocomplete id="confirm_new_email" required placeholder="Підтвердження електронної пошти" name="confirmNewEmail" type="email" class="input black">
                         </div>
                         <div id="confirm_password_label" class="hide">
-                            <label for="confirm_password">Confirm password</label>
+                            <label for="confirm_password">Поточний пароль</label>
                         </div>
                         <div>
-                            <input autocomplete id="confirm_password" required placeholder="Confirm password" name="confirmPassword" type="password" class="input black">
+                            <input autocomplete id="confirm_password" required placeholder="Поточний пароль" name="confirmPassword" type="password" class="input black">
                         </div>
                         <div class="buttons_container">
                             <div class="buttons">
@@ -131,25 +134,25 @@
                     <div class="name__name">Пароль</div>
                     <div class="name__value__edit">
                         <div class="name__name">
-                            <p>You will be required to login again after changing your email address.</p>
+                            <p>Після зміни паролю Вам потрібно буде увійти знову.</p>
                         </div>
                         <div id="current_password_label" class="hide">
-                            <label for="current_password">Current password</label>
+                            <label for="current_password">Поточний пароль</label>
                         </div>
                         <div>
-                            <input autocomplete id="current_password" required placeholder="Current password" name="currentPassword" type="password" class="input black">
+                            <input autocomplete id="current_password" required placeholder="Поточний пароль" name="currentPassword" type="password" class="input black">
                         </div>
                         <div id="new_password_label" class="hide">
-                            <label for="new_password">New password</label>
+                            <label for="new_password">Новий пароль</label>
                         </div>
                         <div>
-                            <input autocomplete id="new_password" required placeholder="New password" name="newPassword" type="password" class="input black">
+                            <input autocomplete id="new_password" required placeholder="Новий пароль" name="newPassword" type="password" class="input black">
                         </div>
                         <div id="confirm_new_password_label" class="hide">
-                            <label for="confirm_new_password">Confirm new password</label>
+                            <label for="confirm_new_password">Підтвердження нового паролю</label>
                         </div>
                         <div>
-                            <input autocomplete id="confirm_new_password" required placeholder="Confirm new password" name="confirmNewPassword" type="password" class="input black">
+                            <input autocomplete id="confirm_new_password" required placeholder="Підтвердження нового паролю" name="confirmNewPassword" type="password" class="input black">
                         </div>
                         <div class="buttons_container">
                             <div class="buttons">
@@ -179,7 +182,7 @@
                     </div>
                 </div>
                 <form id="fullname-i" class="profile__email hide" action="changeFullName" method="post">
-                    <div class="name__name">Full name</div>
+                    <div class="name__name">ПІБ</div>
                     <div class="name__value__edit">
 
                         <div id="first_name_label" class="hide">
@@ -213,6 +216,46 @@
         </div>
     </section>
 </main>
+    <div id="sideBar" class="side-bar phide">
+        <div  class="product-container" style="">
+            <c:choose>
+                <c:when test="${productS != null}">
+                    <c:forEach var="product" items="${productS}">
+                        <div class="_item">
+                            <div class="img-cnt">
+                                <img src="${product.src}" alt="itm">
+                            </div>
+                            <div class="product-info">
+                                <div class="info-title">${product.name}</div>
+                                <div class="info-price"><div class="pp">Ціна :</div><div class="ppp"> ${product.price} грн</div></div>
+                                <form action="deleteProduct" method="post" class="trash">
+                                    <div class="trash-container">
+                                        <input type="hidden" name="id" value="${product.id}">
+
+                                        <input class="trash-input" type="submit" value="">
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+
+                    </c:forEach>
+
+                    <c:choose>
+                        <c:when test="${userId != null}">
+
+                            <form action="buyProduct" method="post" class="button-_container"><input class="bb" type="submit" value="Купити"></form>
+                        </c:when>
+                        <c:otherwise>
+                            <div data-bs-target="#modal-login" data-bs-toggle="modal" data-bs-dismiss="modal" class="button-_container"> <button class="bb">Купити</button></div>
+                        </c:otherwise>
+                    </c:choose>
+                </c:when>
+                <c:otherwise>
+                    <div class="bag-container">Кошик пустий</div>
+                </c:otherwise>
+            </c:choose>
+        </div>
+    </div>
 <footer id="footer">
     <div id="empty"></div>
     <div class="footer-container">
@@ -240,6 +283,7 @@
             &copy; <strong><span class="black">Wear</span><span class="white">With</span><span class="yellow">Us</span></strong>. Усі права захищені
         </div>
     </div>
+
 </footer>
 
     <div class="modal fade" id="modal-image" tabindex="-1" aria-labelledby="modal-login-label3" aria-hidden="true">
@@ -269,8 +313,48 @@
     </div>
 
 </div>
+
+<c:if test="${message!=null}">
+    <input type="hidden" id="msg" value="${message}">
+    <script>
+        const message = document.querySelector('#msg').value;
+        swal({
+            title: 'Успіх!',
+            text: message,
+            icon: 'success',
+            type: 'success',
+            confirmButtonText: 'Добре'
+        })
+    </script>
+    <% session.removeAttribute("message");%>
+</c:if>
+<c:if test="${error!=null}">
+    <input type="hidden" id="msg" value="${error}">
+    <script>
+        const message = document.querySelector('#msg').value;
+        swal({
+            title: 'Помилка!',
+            text: message,
+            icon: 'error',
+            type: 'error',
+            confirmButtonText: 'Добре'
+        })
+    </script>
+    <% session.removeAttribute("error");%>
+</c:if>
+<c:if test="${open == true}">
+    <script>
+        const sideBar = document.querySelector('#sideBar')
+        sideBar.classList.add('pshow','pfade');
+        sideBar.classList.remove('phide');
+    </script>
+    <%session.removeAttribute("open");%>
+</c:if>
 <script type="text/javascript">
     <%@include file="/js/profile.js" %>
+</script>
+<script type="text/javascript">
+    <%@include file="/js/sidebar.js" %>
 </script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"

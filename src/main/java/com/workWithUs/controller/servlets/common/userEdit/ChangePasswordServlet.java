@@ -53,11 +53,11 @@ public class ChangePasswordServlet extends HttpServlet {
                 User user = userDao.getUser(id,connection);
 
                 if(!Encryption.md5(currentPassword).equals(user.getPassword())){
-                    session.setAttribute("changePasswordMessage", "Password is not correct");
+                    session.setAttribute("error", "Пароль не коректний");
                     response.sendRedirect("profile");
                 }else {
                     if(!newPassword.equals(confirmNewPassword)){
-                        session.setAttribute("changePasswordMessage", "Please confirm your new password");
+                        session.setAttribute("error", "Будь ласка підтвердіть Ваш пароль");
                         response.sendRedirect("profile");
                     }else {
                         String encryptedPassword = Encryption.md5(newPassword);
@@ -65,6 +65,7 @@ public class ChangePasswordServlet extends HttpServlet {
                         userDao.updateUser(user,connection);
                         session.invalidate();
                         session = request.getSession();
+                        session.setAttribute("message","Пароль успішно змінено!");
                         response.sendRedirect("/application");
                     }
                 }

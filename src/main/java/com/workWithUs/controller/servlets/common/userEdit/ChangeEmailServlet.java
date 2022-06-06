@@ -67,11 +67,11 @@ public class ChangeEmailServlet extends HttpServlet {
                 String encryptedPassword = Encryption.md5(confirmPassword);
                 User user = userDAO.getUser(id,connection);
                 if (!newEmail.equals(confirmNewEmail)) {
-                    session.setAttribute("changeEmailMessage", "Please Confirm your email");
+                    session.setAttribute("error", "Please Confirm your email");
                     response.sendRedirect("profile");
                 } else {
                     if (!encryptedPassword.equals(user.getPassword())) {
-                        session.setAttribute("changeEmailMessage", "Password is not correct");
+                        session.setAttribute("error", "Password is not correct");
                         response.sendRedirect("profile");
                     } else {
                             user.setEmail(newEmail);
@@ -86,7 +86,7 @@ public class ChangeEmailServlet extends HttpServlet {
         } catch (SQLException e) {
         String message = e.getMessage();
         if (message.contains("email")) {
-            session.setAttribute("changeEmailMessage", "User with this email already exists");
+            session.setAttribute("error", "Користувач з такою Електронною поштою вже існує");
             response.sendRedirect("profile");
         }
         e.printStackTrace();

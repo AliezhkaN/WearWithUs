@@ -5,10 +5,10 @@
     display:none!important;
 }
 .pfade{
-    animation-name: fade;
+    animation-name: pfade;
     animation-duration: 1.5s;
 }
-@keyframes fade{
+@keyframes pfade{
     from{opacity: 0.1;}
     to{opacity: 1;}
 }

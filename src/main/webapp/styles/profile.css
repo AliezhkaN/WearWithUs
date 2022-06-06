@@ -11,6 +11,9 @@
     margin: 0px auto;
 }
 
+main{
+    margin-top: 10vh;
+}
 .profile__container{
     min-height: 40vh;
     display: flex;

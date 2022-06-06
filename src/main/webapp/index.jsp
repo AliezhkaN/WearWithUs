@@ -1,3 +1,4 @@
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <!DOCTYPE html>
@@ -12,9 +13,14 @@
     <style>
         <%@include file="/styles/styles.css"%>
         <%@include file="/styles/modal-styles.css"%>
+        <%@include file="/styles/sidebar.css"%>
+
     </style>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@7.12.15/dist/sweetalert2.all.min.js"></script>
+    <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/sweetalert2@7.12.15/dist/sweetalert2.min.css'>
 </head>
 <body>
+
 <header>
     <a id="logoLink" href="/application">
         <div id="logo">
@@ -138,7 +144,16 @@
 <main>
     <div id="start_block">
         <p>Пориньте у світ стильних та якісних речей разом з нами</p>
-        <button data-bs-target="#modal-login" data-bs-toggle="modal" data-bs-dismiss="modal">Розпочати</button>
+        <c:choose>
+        <c:when test="${userId != null}">
+            <a href="profile"><button class="btnn">Розпочати</button></a>
+
+        </c:when>
+            <c:otherwise>
+                <button class="btnn" data-bs-target="#modal-login" data-bs-toggle="modal" data-bs-dismiss="modal">Розпочати</button>
+            </c:otherwise>
+        </c:choose>
+
     </div>
     <div id="newClothes_block">
         <p>Нові речі вже на сайті!</p>
@@ -160,7 +175,7 @@
                 <tr>
                     <td><img src="./images/about/mail.png" alt="Mail img"></td>
                     <td>Пошта</td>
-                    <td>pets.go@gmail.com</td>
+                    <td>wearWithUs@gmail.com</td>
                 </tr>
                 <tr>
                     <td><img src="./images/about/location.png" alt="Location img"></td>
@@ -194,6 +209,53 @@
     </div>
 </main>
 
+<div id="sideBar" class="side-bar phide">
+    <div  class="product-container" style="">
+        <c:choose>
+            <c:when test="${productS != null}">
+                <c:forEach var="product" items="${productS}">
+                    <div class="_item">
+                        <div class="img-cnt">
+                            <img src="${product.src}" alt="itm">
+                        </div>
+                        <div class="product-info">
+                            <div class="info-title">${product.name}</div>
+                            <div class="info-price"><div class="pp">Ціна :</div><div class="ppp"> ${product.price} грн</div></div>
+                            <form action="deleteProduct" method="post" class="trash">
+                                <div class="trash-container">
+                                    <input type="hidden" name="id" value="${product.id}">
+
+                                    <input class="trash-input" type="submit" value="">
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+
+                </c:forEach>
+
+                <c:choose>
+                    <c:when test="${userId != null}">
+
+                        <form action="buyProduct" method="post" class="button-_container"><input class="bb" type="submit" value="Купити"></form>
+                    </c:when>
+                    <c:otherwise>
+                        <div data-bs-target="#modal-login" data-bs-toggle="modal" data-bs-dismiss="modal" class="button-_container"> <button class="bb">Купити</button></div>
+                    </c:otherwise>
+                </c:choose>
+            </c:when>
+            <c:otherwise>
+                <div class="bag-container">Кошик пустий</div>
+            </c:otherwise>
+        </c:choose>
+
+
+    </div>
+</div>
+
+
+
+
+</div>
 <footer id="footer">
     <div id="empty"></div>
     <div class="footer-container">
@@ -222,7 +284,45 @@
         </div>
     </div>
 </footer>
-
+<c:if test="${message!=null}">
+    <input type="hidden" id="msg" value="${message}">
+    <script>
+        const message = document.querySelector('#msg').value;
+        swal({
+            title: 'Успіх!',
+            text: message,
+            icon: 'success',
+            type: 'success',
+            confirmButtonText: 'Добре'
+        })
+    </script>
+    <% session.removeAttribute("message");%>
+</c:if>
+<c:if test="${error!=null}">
+    <input type="hidden" id="msg" value="${error}">
+    <script>
+        const message = document.querySelector('#msg').value;
+        swal({
+            title: 'Помилка!',
+            text: message,
+            icon: 'error',
+            type: 'error',
+            confirmButtonText: 'Добре'
+        })
+    </script>
+    <% session.removeAttribute("error");%>
+</c:if>
+<c:if test="${open == true}">
+    <script>
+        const sideBar = document.querySelector('#sideBar')
+        sideBar.classList.add('pshow','pfade');
+        sideBar.classList.remove('phide');
+    </script>
+    <%session.removeAttribute("open");%>
+</c:if>
+<script type="text/javascript">
+    <%@include file="/js/sidebar.js" %>
+</script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
         crossorigin="anonymous"></script>

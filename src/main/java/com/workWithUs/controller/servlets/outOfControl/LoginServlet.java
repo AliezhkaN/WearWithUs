@@ -41,18 +41,19 @@ public class LoginServlet extends HttpServlet {
                         role = user.getRole();
                         moveToPage(request, response,role);
                     }else {
-                        session.setAttribute("errorMessage","You are blocked!");
+                        session.setAttribute("error","Ви Заблоковані!");
                         response.sendRedirect("/application");
                     }
 
                 }else {
-                    session.setAttribute("errorMessage","login or password is not correct");
+                    session.setAttribute("error","Не правильний логін або пароль");
                     response.sendRedirect("/application");
                 }
             } catch (SQLException e) {
+
             }
         }else {
-            session.setAttribute("errorMessage","login or password is not correct");
+            session.setAttribute("error","Не правильний логін або пароль");
             response.sendRedirect("/application");
         }
     }
@@ -62,7 +63,7 @@ public class LoginServlet extends HttpServlet {
         if (role == Role.CUSTOMER || role == Role.ADMIN) {
             resp.sendRedirect("profile");
         } else if (role == Role.UNKNOWN) {
-            session.setAttribute("errorMessage","login or password is not correct");
+            session.setAttribute("error","Не правильний логін або пароль");
             resp.sendRedirect("/application");
         }
     }

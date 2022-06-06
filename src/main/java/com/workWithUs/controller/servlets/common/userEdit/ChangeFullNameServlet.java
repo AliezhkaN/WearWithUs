@@ -48,6 +48,7 @@ public class ChangeFullNameServlet extends HttpServlet {
                 User user = userDAO.getUser(id,connection);
                 user.setFullName(fullName);
                 userDAO.updateUser(user,connection);
+                session.setAttribute("message","ПІБ було успішно змінено");
                 response.sendRedirect("profile");
             } catch (SQLException e) {
                 e.printStackTrace();

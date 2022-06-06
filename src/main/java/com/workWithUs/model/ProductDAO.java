@@ -2,10 +2,7 @@ package com.workWithUs.model;
 
 import com.workWithUs.model.entity.Product;
 
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,6 +20,12 @@ public class ProductDAO {
                                           "join genders g on p.gender_id = g.id " +
                                           "join types t on p.type_id = t.id " +
                                           "where gender = 'FEMALE'";
+
+    private static final String GET_BY_ID = "SELECT p.id, src, name, g.gender, t.type, price " +
+            "FROM product p " +
+            "join genders g on p.gender_id = g.id " +
+            "join types t on p.type_id = t.id " +
+            "where p.id=?";
 
     private static final String GET_ALL_BOYS = "SELECT p.id, src, name, g.gender, t.type, price " +
             "FROM product p " +
@@ -96,6 +99,25 @@ public class ProductDAO {
             ConnectionPool.commit(connection);
         }
         return products;
+    }
+
+    public Product getById(int id,Connection connection) throws SQLException {
+        try (PreparedStatement ps = connection.prepareStatement(GET_BY_ID)) {
+            ps.setInt(1,id);
+            ResultSet rs = ps.executeQuery();
+            ProductMapper productMapper = new ProductMapper();
+            while (rs.next()) {
+                Product product = productMapper.map(rs);
+                return product;
+            }
+            ConnectionPool.close(rs);
+        } catch (SQLException e) {
+            ConnectionPool.rollback(connection);
+            throw e;
+        } finally {
+            ConnectionPool.commit(connection);
+        }
+        return null;
     }
 
     private static class ProductMapper implements EntityMapper<Product> {

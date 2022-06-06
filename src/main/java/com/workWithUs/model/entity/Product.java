@@ -1,5 +1,7 @@
 package com.workWithUs.model.entity;
 
+import java.util.Objects;
+
 public class Product {
 
     private int id;
@@ -100,5 +102,30 @@ public class Product {
 
     public void setPrice(int price) {
         this.price = price;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Product product = (Product) o;
+        return id == product.id && price == product.price && Objects.equals(src, product.src) && Objects.equals(name, product.name) && gender == product.gender && type == product.type;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, src, name, gender, type, price);
+    }
+
+    @Override
+    public String toString() {
+        return "Product{" +
+                "id=" + id +
+                ", src='" + src + '\'' +
+                ", name='" + name + '\'' +
+                ", gender=" + gender +
+                ", type=" + type +
+                ", price=" + price +
+                '}';
     }
 }

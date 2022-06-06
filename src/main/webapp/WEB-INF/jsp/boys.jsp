@@ -12,6 +12,7 @@
         <%@include file="/styles/styles.css"%>
         <%@include file="/styles/modal-styles.css"%>
         <%@include file="/styles/boys_girls_styles.css"%>
+        <%@include file="/styles/sidebar.css"%>
     </style>
 </head>
 <body>
@@ -148,13 +149,14 @@
 
     <div id="t-shirts_block">
         <c:forEach var="product" items="${products}">
-            <div class="item_block">
+            <form action="addProduct" method="post" class="item_block">
                 <img class="items" src="<c:out value="${product.src}"/> " alt="gen_monkey">
                 <div class="signature">
                     <div class="sign_text"><b><c:out value="${product.name}"/><br><c:out value="${product.price}"/> грн.</b></div>
-                    <div class="sign_img"><img src="./images/bag.png" alt="buy it"></div>
+                    <input type="hidden" name="id" value="${product.id}">
+                    <div class="sign_img"><input class="inp" type="submit" value=""></div>
                 </div>
-            </div>
+            </form>
         </c:forEach>
 <%--        <div class="item_block">--%>
 <%--            <img class="items" src="./images/boys/t-shirts/1.png" alt="gen_monkey">--%>
@@ -186,7 +188,46 @@
 <%--        </div>--%>
 
     </div>
+    <div id="sideBar" class="side-bar phide">
+        <div  class="product-container" style="">
+            <c:choose>
+                <c:when test="${productS != null}">
+                    <c:forEach var="product" items="${productS}">
+                        <div class="_item">
+                            <div class="img-cnt">
+                                <img src="${product.src}" alt="itm">
+                            </div>
+                            <div class="product-info">
+                                <div class="info-title">${product.name}</div>
+                                <div class="info-price"><div class="pp">Ціна :</div><div class="ppp"> ${product.price} грн</div></div>
+                                <form action="deleteProduct" method="post" class="trash">
+                                    <div class="trash-container">
+                                        <input type="hidden" name="id" value="${product.id}">
 
+                                        <input class="trash-input" type="submit" value="">
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+
+                    </c:forEach>
+
+                    <c:choose>
+                        <c:when test="${userId != null}">
+
+                            <form action="buyProduct" method="post" class="button-_container"><input class="bb" type="submit" value="Купити"></form>
+                        </c:when>
+                        <c:otherwise>
+                            <div data-bs-target="#modal-login" data-bs-toggle="modal" data-bs-dismiss="modal" class="button-_container"> <button class="bb">Купити</button></div>
+                        </c:otherwise>
+                    </c:choose>
+                </c:when>
+                <c:otherwise>
+                    <div class="bag-container">Кошик пустий</div>
+                </c:otherwise>
+            </c:choose>
+        </div>
+    </div>
 </main>
 
 <footer id="footer">
@@ -217,7 +258,17 @@
         </div>
     </div>
 </footer>
-
+<c:if test="${open == true}">
+    <script>
+        const sideBar = document.querySelector('#sideBar')
+        sideBar.classList.add('pshow','pfade');
+        sideBar.classList.remove('phide');
+    </script>
+    <%session.removeAttribute("open");%>
+</c:if>
+<script type="text/javascript">
+    <%@include file="/js/sidebar.js" %>
+</script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
         crossorigin="anonymous"></script>

@@ -47,7 +47,13 @@ public class SignUpServlet extends HttpServlet {
                 session.setAttribute("role",newUser.getRole());
             response.sendRedirect("profile");
             } catch (SQLException e) {
-                e.printStackTrace();
+                String msg = e.getMessage();
+                if (msg.contains("email")) {
+                    session.setAttribute("error", "Користувач з такою Електронною поштою вже існує");
+                } else if (msg.contains("phone")) {
+                    session.setAttribute("error", "Користувач з таким номером телефону вже існує");
+                }
+                response.sendRedirect("/application");
             }
         }
     }

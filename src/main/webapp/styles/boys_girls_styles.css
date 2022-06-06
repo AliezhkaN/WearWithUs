@@ -1,19 +1,18 @@
 div#news {
     display: flex;
     color: #502E2E;
-    margin-top: 2.5%;
+    margin-top: 7vh;
     justify-content: center;
 }
 
 
-
 div#news div {
-    margin: 50px;
+    margin: 40px;
     text-shadow: grey 2px 5px 8px;
 }
 
 div#t-shirtTitle, div#sweatshirtsTitle {
-   padding-top: 60px;
+   padding-top: 50px;
 }
 
 div#t-shirtTitle a , div#sweatshirtsTitle a {
@@ -37,16 +36,15 @@ main div#t-shirts_block {
     display: flex;
     justify-content: center;
     background-color: white;
-    padding-bottom: 130px;
 }
 
-div.item_block {
-    margin: 80px 80px 0 80px;
+.item_block {
+    margin: 50px 80px 0 80px;
     max-width: 400px;
 
 }
 
-div.signature {
+.signature {
     display: flex;
     text-align: center;
     align-items: center;
@@ -56,16 +54,17 @@ div.signature {
     background-color: #F9EEEE;
 }
 
-div.sign_text {
+.sign_text {
     width: 85%;
     padding-left: 50px;
 }
 
-div.sign_img {
+.sign_img {
     width: 15%;
+    height: 4.5vh;
 }
 
-div.sign_img:hover {
+.sign_img:hover {
     transform: scale(0.85, 0.85);
     cursor: pointer;
 }
@@ -76,5 +75,13 @@ img.items {
     right: 0;
     bottom: 0;
     width: 100%;
-    height: 90%;
+    height: 75%;
+}
+
+.inp[type=submit]{
+    background: url('./images/bag.png') no-repeat;
+    border: 0;
+    display: block;
+    width: 70%;
+    height: 100%;
 }

@@ -1,0 +1,151 @@
+.side-bar{
+    height: 100%;
+    width: 520px; /* Set the width of the sidebar */
+    position: fixed; /* Fixed Sidebar (stay in place on scroll) */
+    z-index: 1; /* Stay on top */
+    top: 10vh; /* Stay at the top */
+    right: 0;
+    bottom: 0;
+    background-color: #eedada; /* Black */
+    overflow-x: hidden; /* Disable horizontal scroll */
+
+}
+
+.product-container{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    height: auto;
+    max-height: 90vh;
+    overflow-y: scroll;
+}
+
+._item{
+    width: 100%;
+    height: 30vh;
+    background-color: white;
+    display: flex;
+    flex-direction: row;
+    margin-top: 2vh;
+    margin-bottom: 2vh;
+}
+
+.img-cnt{
+    width: 50%;
+}
+
+.img-cnt img{
+    width: 100%;
+    height: 100%;
+}
+
+.product-info{
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+}
+
+.info-title{
+    width:100%;
+    height: 35%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    font-size: 22px;
+}
+
+.button-_container{
+    height: 20%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.button-_container .bb{
+    height: 50px;
+    min-width: 400px;
+
+    background: #502E2E;
+    border-radius: 5px;
+    border: #342020 solid 2px;
+
+    font-family: 'Rubik', sans-serif;
+    font-weight: bold;
+    color: white;
+    font-size: 24px;
+    letter-spacing: 0.14em;
+}
+
+.button-_container  .bb:hover {
+    transform: scale(1.05, 1.1);
+    border-color: yellow;
+}
+.info-price{
+    width:100%;
+    height: 35%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    font-size: 22px;
+}
+
+.info-price .pp{
+    margin-left: 2vh;
+    width: 40% ;
+}
+
+.trash{
+    height: 30%;
+
+    background-color: #aba1a1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+.trash-container{
+    height: 45%;
+    width: 15%;
+}
+
+.trash-container img{
+    height: 100%;
+    width: 100%;
+}
+
+.trash-input[type=submit]{
+    background: url('./images/delete.png') no-repeat;
+    border: 0;
+    display: block;
+    height: 100%;
+    width: 100%;
+}
+
+.bag-container{
+    height: 80vh;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 24px;
+}
+
+.pshow{
+    display:flex!important;
+}
+.phide{
+    display:none!important;
+}
+.pfade{
+    animation-name: fade;
+    animation-duration: 1.5s;
+}
+@keyframes fade{
+    from{opacity: 0.1;}
+    to{opacity: 1;}
+}
+

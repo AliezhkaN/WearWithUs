@@ -38,11 +38,11 @@
         </init-param>
         <init-param>
             <param-name>common</param-name>
-            <param-value>logout profile changeEmail avatarEdit changePassword changeFullName</param-value>
+            <param-value>logout profile changeEmail avatarEdit changePassword changeFullName buyProduct</param-value>
         </init-param>
         <init-param>
             <param-name>out-of-control</param-name>
-            <param-value>login jsp default signUp forgotPassword confirmCode changePasswordByEmail contact boys girls</param-value>
+            <param-value>login jsp default signUp forgotPassword confirmCode changePasswordByEmail contact boys girls deleteProduct addProduct</param-value>
         </init-param>
     </filter>
     <filter-mapping>
