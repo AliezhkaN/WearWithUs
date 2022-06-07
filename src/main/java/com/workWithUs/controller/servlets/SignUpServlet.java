@@ -49,9 +49,9 @@ public class SignUpServlet extends HttpServlet {
             } catch (SQLException e) {
                 String msg = e.getMessage();
                 if (msg.contains("email")) {
-                    session.setAttribute("error", "Користувач з такою Електронною поштою вже існує");
+                    session.setAttribute("error", "USER_WITH_EMAIL_ALREADY_EXISTS");
                 } else if (msg.contains("phone")) {
-                    session.setAttribute("error", "Користувач з таким номером телефону вже існує");
+                    session.setAttribute("error", "USER_WITH_PHONE_ALREADY_EXISTS");
                 }
                 response.sendRedirect("/application");
             }

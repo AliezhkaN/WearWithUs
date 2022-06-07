@@ -67,18 +67,18 @@ public class ChangeEmailServlet extends HttpServlet {
                 String encryptedPassword = Encryption.md5(confirmPassword);
                 User user = userDAO.getUser(id,connection);
                 if (!newEmail.equals(confirmNewEmail)) {
-                    session.setAttribute("error", "Please Confirm your email");
+                    session.setAttribute("error", "PLEASE_CONFIRM_EMAIL");
                     response.sendRedirect("profile");
                 } else {
                     if (!encryptedPassword.equals(user.getPassword())) {
-                        session.setAttribute("error", "Password is not correct");
+                        session.setAttribute("error", "PASSWORD_IS_NOT_CORRECT");
                         response.sendRedirect("profile");
                     } else {
                             user.setEmail(newEmail);
                             userDAO.updateUser(user, connection);
                             session.invalidate();
                             session = request.getSession();
-                            session.setAttribute("message", "Email successfully changed");
+                            session.setAttribute("message", "EMAIL_SUCCESSFULLY_CHANGED");
                             response.sendRedirect("/application");
                     }
                 }
@@ -86,7 +86,7 @@ public class ChangeEmailServlet extends HttpServlet {
         } catch (SQLException e) {
         String message = e.getMessage();
         if (message.contains("email")) {
-            session.setAttribute("error", "Користувач з такою Електронною поштою вже існує");
+            session.setAttribute("error", "USER_WITH_EMAIL_ALREADY_EXISTS");
             response.sendRedirect("profile");
         }
         e.printStackTrace();

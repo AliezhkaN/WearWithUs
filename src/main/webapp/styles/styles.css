@@ -65,14 +65,19 @@ div#acc_bag {
     margin-left: 3%;
 }
 
+
+
 .account_block img {
-    padding-left: 15px;
-    margin-top: 3px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
     height: 35px;
 }
 #bag_block img {
-    margin-top: 5px;
-    padding-left: 9px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+
 }
 #account_block, #bag_block {
     margin-left: 10px;
@@ -86,6 +91,7 @@ a.acc_bag_links:hover {
     background-color: #865d5d;
 }
 p.acc_bag_text {
+    text-align: center;
     margin: 0;
     color: white;
 }

@@ -1,6 +1,8 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<fmt:setLocale value="${lang}" scope="session"/>
+<fmt:setBundle basename="text"/>
 <!DOCTYPE html>
 <html>
 <head>
@@ -14,6 +16,7 @@
         <%@include file="/styles/styles.css"%>
         <%@include file="/styles/modal-styles.css"%>
         <%@include file="/styles/sidebar.css"%>
+        <%@include file="/styles/select.css"%>
 
     </style>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@7.12.15/dist/sweetalert2.all.min.js"></script>
@@ -32,9 +35,9 @@
     </a>
 
     <div id="menu">
-        <a class="headerMenu" href="">Головна</a>
-        <a class="headerMenu" href="boys">Чоловікам</a>
-        <a class="headerMenu" href="girls">Жінкам</a>
+        <a class="headerMenu" href=""> <fmt:message key="Home"/></a>
+        <a class="headerMenu" href="boys"><fmt:message key="FOR_MEN"/></a>
+        <a class="headerMenu" href="girls"><fmt:message key="FOR_WOMEN"/></a>
     </div>
 
     <div id="acc_bag">
@@ -43,7 +46,7 @@
             <a class="acc_bag_links" href="profile">
                 <div class="account_block">
                     <img src="./images/account.png" alt="Account img">
-                    <p class="acc_bag_text">Акаунт</p>
+                    <p class="acc_bag_text"><fmt:message key="ACCOUNT"/></p>
                 </div>
             </a>
         </c:when>
@@ -51,7 +54,7 @@
             <a class="acc_bag_links">
                 <div class="account_block" data-bs-toggle="modal" data-bs-target="#modal-login">
                     <img src="./images/account.png" alt="Account img">
-                    <p class="acc_bag_text">Акаунт</p>
+                    <p class="acc_bag_text"><fmt:message key="ACCOUNT"/></p>
                 </div>
             </a>
         </c:otherwise>
@@ -61,10 +64,23 @@
         <a class="acc_bag_links">
             <div id="bag_block">
                 <img src="./images/bag.png" alt="Bag img">
-                <p class="acc_bag_text">Кошик</p>
+                <p class="acc_bag_text"><fmt:message key="BAG"/></p>
             </div>
         </a>
+        <form action="changeLocale" method="post" style="height: 8vh; display: flex; justify-content: center; align-items: center">
+            <select class="select" name="lang" id="" onchange="this.form.submit()">
+                <c:if test="${lang == 'en'}">
+                    <option>en</option>
+                    <option>uk</option>
+                </c:if>
+                <c:if test="${lang == 'uk'}">
+                    <option>uk</option>
+                    <option>en</option>
+                </c:if>
+            </select>
+        </form>
     </div>
+
 </header>
 
 <!----------------------------------Account modal window---------------------------------->
@@ -73,24 +89,24 @@
         <form action="login" method="post" class="modal-content modalWindow">
             <button class="btn-close close-modal-btn" data-bs-dismiss="modal" aria-label="close"></button>
             <div class="login-title">
-                ВХІД
+                <fmt:message key="LOGIN"/>
             </div>
             <div class="login-title subscription">
-                ЧЕРЕЗ АКАУНТ WearWithUS
+                <fmt:message key="WITH_ACCOUNT"/> WearWithUS
             </div>
             <div class="input-form">
-                <label for="input-form-email">Електронна пошта</label><br>
+                <label for="input-form-email"><fmt:message key="MAIL"/></label><br>
                 <input id="input-form-email" name="email" required type="email" >
             </div>
             <div class="input-form">
-                <label for="input-form-pass">Пароль</label><br>
+                <label for="input-form-pass"><fmt:message key="PASSWORD"/></label><br>
                 <input id="input-form-pass" name="password" required type="password">
             </div>
-            <a href="#">Відновлення доступу</a>
+            <br>
 
             <div class="modal-footer-buttons">
-                <button class="signUp" data-bs-target="#modal-registration" data-bs-toggle="modal" data-bs-dismiss="modal"><span class="arrow-left">←</span>РЕЄСТРАЦІЯ</button>
-                <input type="submit" value="ВХІД" class="logIn">
+                <button class="signUp" data-bs-target="#modal-registration" data-bs-toggle="modal" data-bs-dismiss="modal"><span class="arrow-left">←</span><fmt:message key="SIGN_UP"/></button>
+                <input type="submit" value="<fmt:message key="LOGIN"/>" class="logIn">
             </div>
         </form>
     </div>
@@ -101,40 +117,40 @@
         <form method="post" action="signUp" class="modal-content modalWindow" id="registrationWindow">
             <button class="btn-close close-modal-btn" data-bs-dismiss="modal" aria-label="close"></button>
             <div class="login-title" id="signUpTitle">
-                РЕЄСТРАЦІЯ
+                <fmt:message key="SIGN_UP"/>
             </div>
             <div class="input-form">
-                <label for="input-form-email_reg">Електронна пошта</label><br>
+                <label for="input-form-email_reg"><fmt:message key="MAIL"/></label><br>
                 <input id="input-form-email_reg" name="email" required type="email" >
             </div>
             <div class="input-form">
-                <label for="input-form-name_reg">ПІБ</label><br>
+                <label for="input-form-name_reg"><fmt:message key="FULL_NAME"/></label><br>
                 <input id="input-form-name_reg" name="fullName" required type="text">
             </div>
             <div class="input-form">
-                <label for="input-form-tel_reg">Номер телефону</label><br>
+                <label for="input-form-tel_reg"><fmt:message key="PHONE_NUMBER"/></label><br>
                 <input id="input-form-tel_reg" name="phone" maxlength="14" required type="tel" value="+380">
             </div>
             <div class="input-form">
-                <label for="input-form-pass_reg1">Пароль</label><br>
+                <label for="input-form-pass_reg1"><fmt:message key="PASSWORD"/></label><br>
                 <input id="input-form-pass_reg1" name="password" required type="password">
             </div>
             <div class="input-form">
-                <label for="input-form-pass_reg2">Підтвердіть пароль</label><br>
+                <label for="input-form-pass_reg2"><fmt:message key="CONFIRM_PASSWORD"/></label><br>
                 <input id="input-form-pass_reg2" name="confirm" required type="password">
             </div>
 
             <div class="form-check">
                 <input class="form-check-input checkbox-reg-input" type="checkbox" value="" required id="flexCheckDefault">
                 <label class="form-check-label checkbox-reg-label" for="flexCheckDefault">
-                    Я згоден з умовами використання сайту
+                    <fmt:message key="I_AGREE_WITH"/>
                 </label>
             </div>
-            <a href="#">Відновлення доступу</a>
+            <br>
 
             <div class="modal-footer-buttons">
-                <button class="signUp" data-bs-target="#modal-login" data-bs-toggle="modal" data-bs-dismiss="modal"><span class="arrow-left">←</span>ВХІД</button>
-                <input type="submit" value="ЗАРЕЄСТРУВАТИСЯ" class="logIn">
+                <button class="signUp" data-bs-target="#modal-login" data-bs-toggle="modal" data-bs-dismiss="modal"><span class="arrow-left">←</span><fmt:message key="LOGIN"/></button>
+                <input type="submit" value="<fmt:message key="SIGN_UP"/>" class="logIn">
             </div>
         </form>
     </div>
@@ -143,20 +159,20 @@
 
 <main>
     <div id="start_block">
-        <p>Пориньте у світ стильних та якісних речей разом з нами</p>
+        <p><fmt:message key="DIVE_INTO"/></p>
         <c:choose>
         <c:when test="${userId != null}">
-            <a href="profile"><button class="btnn">Розпочати</button></a>
+            <a href="profile"><button class="btnn"><fmt:message key="GET_STARTED"/></button></a>
 
         </c:when>
             <c:otherwise>
-                <button class="btnn" data-bs-target="#modal-login" data-bs-toggle="modal" data-bs-dismiss="modal">Розпочати</button>
+                <button class="btnn" data-bs-target="#modal-login" data-bs-toggle="modal" data-bs-dismiss="modal"><fmt:message key="GET_STARTED"/></button>
             </c:otherwise>
         </c:choose>
 
     </div>
     <div id="newClothes_block">
-        <p>Нові речі вже на сайті!</p>
+        <p><fmt:message key="NEW_CLOTHES_ALREADY"/></p>
         <div id="items">
             <img src="./images/newClothes/item1.png" alt="image1">
             <img src="./images/newClothes/item2.png" alt="image2">
@@ -165,46 +181,46 @@
     </div>
     <div id="about_block">
         <div id="our_center">
-            <h3>Наш центр</h3>
+            <h3><fmt:message key="OUR_CENTER"/></h3>
             <table>
                 <tr>
                     <td><img src="./images/about/phone.png" alt="Phone img"></td>
-                    <td>Телефон</td>
+                    <td><fmt:message key="PHONE"/></td>
                     <td>+380 88 888 8888</td>
                 </tr>
                 <tr>
                     <td><img src="./images/about/mail.png" alt="Mail img"></td>
-                    <td>Пошта</td>
+                    <td><fmt:message key="EMAIL"/></td>
                     <td>wearWithUs@gmail.com</td>
                 </tr>
                 <tr>
                     <td><img src="./images/about/location.png" alt="Location img"></td>
-                    <td>Розташування</td>
-                    <td>Степана Бандери<br>вулиця, 123A</td>
+                    <td><fmt:message key="LOCATION"/></td>
+                    <td><fmt:message key="St_BN"/><br><fmt:message key="ST_B"/></td>
                 </tr>
                 <tr>
                     <td><img src="./images/about/maps.png" alt="Maps img"></td>
-                    <td>Карти</td>
-                    <td><a target="_blank" id="googleMaps" href="https://goo.gl/maps/t4CcXYu1xads1J3R7">Переглянути на<br>Google Maps</a></td>
+                    <td><fmt:message key="MAPS"/></td>
+                    <td><a target="_blank" id="googleMaps" href="https://goo.gl/maps/t4CcXYu1xads1J3R7"><fmt:message key="VIEW_ON"/><br>Google Maps</a></td>
                 </tr>
             </table>
         </div>
         <div id="contact_form">
-            <h3>Контактний формуляр</h3>
-            <p>У вас є запитання - у нас є відповіді.<br>Зв’яжіться з нами сьогодні, ми тут, щоб допомогти.</p>
+            <h3><fmt:message key="CONTACT_FORM"/></h3>
+            <p><fmt:message key="YOU_HAVE_QUESTIONS"/><br><fmt:message key="CONTACT_US_TODAY"/></p>
             <div class="text-field_floating-3">
                 <input class="text-field__input" type="text" id="name" placeholder="Your name">
-                <label class="text-field__label" for="name">Повне ім'я</label>
+                <label class="text-field__label" for="name"><fmt:message key="FULL_NAME"/></label>
             </div>
             <div class="text-field_floating-3">
                 <input class="text-field__input" type="email" id="email" placeholder="Your e-mail">
-                <label class="text-field__label" for="email">Пошта</label>
+                <label class="text-field__label" for="email"><fmt:message key="EMAIL"/></label>
             </div>
             <div class="text-field_floating-3">
                 <input class="text-field__input" type="text" id="message" placeholder="Your message">
-                <label class="text-field__label" for="message">Повідомлення</label>
+                <label class="text-field__label" for="message"><fmt:message key="MESSAGE"/></label>
             </div>
-            <button>Відправити</button>
+            <button><fmt:message key="SEND"/></button>
         </div>
     </div>
 </main>
@@ -212,7 +228,7 @@
 <div id="sideBar" class="side-bar phide">
     <div  class="product-container" style="">
         <c:choose>
-            <c:when test="${productS != null}">
+            <c:when test="${productS != null && productS.size() > 0}">
                 <c:forEach var="product" items="${productS}">
                     <div class="_item">
                         <div class="img-cnt">
@@ -220,7 +236,7 @@
                         </div>
                         <div class="product-info">
                             <div class="info-title">${product.name}</div>
-                            <div class="info-price"><div class="pp">Ціна :</div><div class="ppp"> ${product.price} грн</div></div>
+                            <div class="info-price"><div class="pp"><fmt:message key="PRICE"/> :</div><div class="ppp"> ${product.price} <fmt:message key="UAH"/></div></div>
                             <form action="deleteProduct" method="post" class="trash">
                                 <div class="trash-container">
                                     <input type="hidden" name="id" value="${product.id}">
@@ -236,15 +252,15 @@
                 <c:choose>
                     <c:when test="${userId != null}">
 
-                        <form action="buyProduct" method="post" class="button-_container"><input class="bb" type="submit" value="Купити"></form>
+                        <form action="buyProduct" method="post" class="button-_container"><input class="bb" type="submit" value="<fmt:message key="BUY"/>"></form>
                     </c:when>
                     <c:otherwise>
-                        <div data-bs-target="#modal-login" data-bs-toggle="modal" data-bs-dismiss="modal" class="button-_container"> <button class="bb">Купити</button></div>
+                        <div data-bs-target="#modal-login" data-bs-toggle="modal" data-bs-dismiss="modal" class="button-_container"> <button class="bb"><fmt:message key="BUY"/></button></div>
                     </c:otherwise>
                 </c:choose>
             </c:when>
             <c:otherwise>
-                <div class="bag-container">Кошик пустий</div>
+                <div class="bag-container"><fmt:message key="BAG_IS_EMPTY"/></div>
             </c:otherwise>
         </c:choose>
 
@@ -280,20 +296,18 @@
             </a>
         </div>
         <div class="copyright">
-            &copy; <strong><span class="black">Wear</span><span class="white">With</span><span class="yellow">Us</span></strong>. Усі права захищені
+            &copy; <strong><span class="black">Wear</span><span class="white">With</span><span class="yellow">Us</span></strong>. <fmt:message key="ALL_RIGHTS_RESERVED"/>
         </div>
     </div>
 </footer>
 <c:if test="${message!=null}">
-    <input type="hidden" id="msg" value="${message}">
     <script>
-        const message = document.querySelector('#msg').value;
         swal({
-            title: 'Успіх!',
-            text: message,
+            title: '<fmt:message key="SUCCESS"/>',
+            text: '<fmt:message key="${message}"/>',
             icon: 'success',
             type: 'success',
-            confirmButtonText: 'Добре'
+            confirmButtonText: '<fmt:message key="OK"/>'
         })
     </script>
     <% session.removeAttribute("message");%>
@@ -301,13 +315,12 @@
 <c:if test="${error!=null}">
     <input type="hidden" id="msg" value="${error}">
     <script>
-        const message = document.querySelector('#msg').value;
         swal({
-            title: 'Помилка!',
-            text: message,
+            title: '<fmt:message key="FAILURE"/>',
+            text: '<fmt:message key="${error}"/>',
             icon: 'error',
             type: 'error',
-            confirmButtonText: 'Добре'
+            confirmButtonText: '<fmt:message key="OK"/>'
         })
     </script>
     <% session.removeAttribute("error");%>

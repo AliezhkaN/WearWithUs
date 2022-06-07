@@ -16,7 +16,7 @@ public class BuyProductServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession();
         session.removeAttribute("productS");
-        session.setAttribute("message","Дякуємо за покупку!");
+        session.setAttribute("message","THANKS_FOR_YOUR");
         response.sendRedirect("profile");
     }
 }

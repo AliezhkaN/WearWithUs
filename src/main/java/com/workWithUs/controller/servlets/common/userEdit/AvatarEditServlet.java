@@ -30,7 +30,7 @@ public class AvatarEditServlet extends HttpServlet {
             User user = userDAO.getUser(id,connection);
             user.setAvatar(avatar);
             userDAO.updateUser(user,connection);
-            session.setAttribute("message","Аватар успішно змінений");
+            session.setAttribute("message","AVATAR_SUCCESSFULLY_CHANGED");
         } catch (SQLException e) {
                     e.printStackTrace();
         }

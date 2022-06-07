@@ -46,14 +46,14 @@ public class LoginServlet extends HttpServlet {
                     }
 
                 }else {
-                    session.setAttribute("error","Не правильний логін або пароль");
+                    session.setAttribute("error","LOGIN_OR_PASSWORD_IS_INCORRECT");
                     response.sendRedirect("/application");
                 }
             } catch (SQLException e) {
 
             }
         }else {
-            session.setAttribute("error","Не правильний логін або пароль");
+            session.setAttribute("error","LOGIN_OR_PASSWORD_IS_INCORRECT");
             response.sendRedirect("/application");
         }
     }
@@ -63,7 +63,7 @@ public class LoginServlet extends HttpServlet {
         if (role == Role.CUSTOMER || role == Role.ADMIN) {
             resp.sendRedirect("profile");
         } else if (role == Role.UNKNOWN) {
-            session.setAttribute("error","Не правильний логін або пароль");
+            session.setAttribute("error","LOGIN_OR_PASSWORD_IS_INCORRECT");
             resp.sendRedirect("/application");
         }
     }

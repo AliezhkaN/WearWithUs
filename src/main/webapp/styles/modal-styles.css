@@ -97,6 +97,7 @@ button.signUp,input.signUp {
 }
 
 input.logIn,button.logIn {
+    text-transform: uppercase;
     background-color: #F0C9C9;
 }
 

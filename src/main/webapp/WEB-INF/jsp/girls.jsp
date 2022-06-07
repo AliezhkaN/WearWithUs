@@ -1,5 +1,8 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<fmt:setLocale value="${lang}" scope="session"/>
+<fmt:setBundle basename="text"/>
 <html>
 <head>
     <meta charset="UTF-8">
@@ -13,6 +16,7 @@
         <%@include file="/styles/modal-styles.css"%>
         <%@include file="/styles/boys_girls_styles.css"%>
         <%@include file="/styles/sidebar.css"%>
+        <%@include file="/styles/select.css"%>
     </style>
 </head>
 <body>
@@ -27,9 +31,9 @@
     </a>
 
     <div id="menu">
-        <a class="headerMenu" href="/application">Головна</a>
-        <a class="headerMenu" href="boys">Чоловікам</a>
-        <a class="headerMenu" href="">Жінкам</a>
+        <a class="headerMenu" href="/application"> <fmt:message key="Home"/></a>
+        <a class="headerMenu" href="boys"><fmt:message key="FOR_MEN"/></a>
+        <a class="headerMenu" href=""><fmt:message key="FOR_WOMEN"/></a>
     </div>
 
     <div id="acc_bag">
@@ -38,7 +42,7 @@
                 <a class="acc_bag_links" href="profile">
                     <div class="account_block">
                         <img src="./images/account.png" alt="Account img">
-                        <p class="acc_bag_text">Акаунт</p>
+                        <p class="acc_bag_text"><fmt:message key="ACCOUNT"/></p>
                     </div>
                 </a>
             </c:when>
@@ -46,17 +50,31 @@
                 <a class="acc_bag_links">
                     <div class="account_block" data-bs-toggle="modal" data-bs-target="#modal-login">
                         <img src="./images/account.png" alt="Account img">
-                        <p class="acc_bag_text">Акаунт</p>
+                        <p class="acc_bag_text"><fmt:message key="ACCOUNT"/></p>
                     </div>
                 </a>
             </c:otherwise>
         </c:choose>
+
+
         <a class="acc_bag_links">
             <div id="bag_block">
                 <img src="./images/bag.png" alt="Bag img">
-                <p class="acc_bag_text">Кошик</p>
+                <p class="acc_bag_text"><fmt:message key="BAG"/></p>
             </div>
         </a>
+        <form action="changeLocale" method="post" style="height: 8vh; display: flex; justify-content: center; align-items: center">
+            <select class="select" name="lang" id="" onchange="this.form.submit()">
+                <c:if test="${lang == 'en'}">
+                    <option>en</option>
+                    <option>uk</option>
+                </c:if>
+                <c:if test="${lang == 'uk'}">
+                    <option>uk</option>
+                    <option>en</option>
+                </c:if>
+            </select>
+        </form>
     </div>
 </header>
 
@@ -66,24 +84,24 @@
         <form action="login" method="post" class="modal-content modalWindow">
             <button class="btn-close close-modal-btn" data-bs-dismiss="modal" aria-label="close"></button>
             <div class="login-title">
-                ВХІД
+                <fmt:message key="LOGIN"/>
             </div>
             <div class="login-title subscription">
-                ЧЕРЕЗ АКАУНТ WearWithUS
+                <fmt:message key="WITH_ACCOUNT"/> WearWithUS
             </div>
             <div class="input-form">
-                <label for="input-form-email">Електронна пошта</label><br>
+                <label for="input-form-email"><fmt:message key="MAIL"/></label><br>
                 <input id="input-form-email" name="email" required type="email" >
             </div>
             <div class="input-form">
-                <label for="input-form-pass">Пароль</label><br>
+                <label for="input-form-pass"><fmt:message key="PASSWORD"/></label><br>
                 <input id="input-form-pass" name="password" required type="password">
             </div>
-            <a href="#">Відновлення доступу</a>
+            <br>
 
             <div class="modal-footer-buttons">
-                <button class="signUp" data-bs-target="#modal-registration" data-bs-toggle="modal" data-bs-dismiss="modal"><span class="arrow-left">←</span>РЕЄСТРАЦІЯ</button>
-                <input type="submit" value="ВХІД" class="logIn">
+                <button class="signUp" data-bs-target="#modal-registration" data-bs-toggle="modal" data-bs-dismiss="modal"><span class="arrow-left">←</span><fmt:message key="SIGN_UP"/></button>
+                <input type="submit" value="<fmt:message key="LOGIN"/>" class="logIn">
             </div>
         </form>
     </div>
@@ -94,40 +112,40 @@
         <form method="post" action="signUp" class="modal-content modalWindow" id="registrationWindow">
             <button class="btn-close close-modal-btn" data-bs-dismiss="modal" aria-label="close"></button>
             <div class="login-title" id="signUpTitle">
-                РЕЄСТРАЦІЯ
+                <fmt:message key="SIGN_UP"/>
             </div>
             <div class="input-form">
-                <label for="input-form-email_reg">Електронна пошта</label><br>
+                <label for="input-form-email_reg"><fmt:message key="MAIL"/></label><br>
                 <input id="input-form-email_reg" name="email" required type="email" >
             </div>
             <div class="input-form">
-                <label for="input-form-name_reg">ПІБ</label><br>
+                <label for="input-form-name_reg"><fmt:message key="FULL_NAME"/></label><br>
                 <input id="input-form-name_reg" name="fullName" required type="text">
             </div>
             <div class="input-form">
-                <label for="input-form-tel_reg">Номер телефону</label><br>
+                <label for="input-form-tel_reg"><fmt:message key="PHONE_NUMBER"/></label><br>
                 <input id="input-form-tel_reg" name="phone" maxlength="14" required type="tel" value="+380">
             </div>
             <div class="input-form">
-                <label for="input-form-pass_reg1">Пароль</label><br>
+                <label for="input-form-pass_reg1"><fmt:message key="PASSWORD"/></label><br>
                 <input id="input-form-pass_reg1" name="password" required type="password">
             </div>
             <div class="input-form">
-                <label for="input-form-pass_reg2">Підтвердіть пароль</label><br>
+                <label for="input-form-pass_reg2"><fmt:message key="CONFIRM_PASSWORD"/></label><br>
                 <input id="input-form-pass_reg2" name="confirm" required type="password">
             </div>
 
             <div class="form-check">
                 <input class="form-check-input checkbox-reg-input" type="checkbox" value="" required id="flexCheckDefault">
                 <label class="form-check-label checkbox-reg-label" for="flexCheckDefault">
-                    Я згоден з умовами використання сайту
+                    <fmt:message key="I_AGREE_WITH"/>
                 </label>
             </div>
-            <a href="#">Відновлення доступу</a>
+            <br>
 
             <div class="modal-footer-buttons">
-                <button class="signUp" data-bs-target="#modal-login" data-bs-toggle="modal" data-bs-dismiss="modal"><span class="arrow-left">←</span>ВХІД</button>
-                <input type="submit" value="ЗАРЕЄСТРУВАТИСЯ" class="logIn">
+                <button class="signUp" data-bs-target="#modal-login" data-bs-toggle="modal" data-bs-dismiss="modal"><span class="arrow-left">←</span><fmt:message key="LOGIN"/></button>
+                <input type="submit" value="<fmt:message key="SIGN_UP"/>" class="logIn">
             </div>
         </form>
     </div>
@@ -137,68 +155,41 @@
 <main>
     <div id="news">
         <div id="t-shirtTitle">
-            <a href="girls?type=t">ФУТБОЛКИ</a>
+            <a href="girls?type=t"><fmt:message key="T_SHIRTS"/></a>
         </div>
         <div id="newsTitle">
-            <h1>НОВИНКИ</h1>
+            <h1><fmt:message key="NEW_CLOTHES"/></h1>
         </div>
         <div id="sweatshirtsTitle">
-            <a href="girls?type=s">СВІТШОТИ</a>
+            <a href="girls?type=s"><fmt:message key="SWEATSHIRTS"/></a>
         </div>
     </div>
 
     <div id="t-shirts_block">
         <c:forEach var="product" items="${products}">
-                    <form action="addProduct" method="post" class="item_block">
-                        <img class="items" src="<c:out value="${product.src}"/> " alt="gen_monkey">
-                        <div class="signature">
-                            <div class="sign_text"><b><c:out value="${product.name}"/><br><c:out value="${product.price}"/> грн.</b></div>
-                            <input type="hidden" name="id" value="${product.id}">
-                            <div class="sign_img"><input class="inp" type="submit" src="./images/bag.png" alt="buy it" value=""></div>
-                        </div>
-                    </form>
+            <form action="addProduct" method="post" class="item_block">
+                <img class="items" src="<c:out value="${product.src}"/> " alt="gen_monkey">
+                <div class="signature">
+                    <div class="sign_text"><b><fmt:message key="${product.type}"/> <c:out value="${product.name}"/><br><c:out value="${product.price}"/> грн.</b></div>
+                    <input type="hidden" name="id" value="${product.id}">
+                    <div class="sign_img"><input class="inp" type="submit" value=""></div>
+                </div>
+            </form>
         </c:forEach>
-<%--        <div class="item_block">--%>
-<%--            <img class="items" src="./images/girls/t-shirts/1.png" alt="gen_monkey">--%>
-<%--            <div class="signature">--%>
-<%--                <div class="sign_text"><b>Футболка Ukraine<br>350 грн.</b></div>--%>
-<%--                <div class="sign_img"><img src="./images/bag.png" alt="buy it"></div>--%>
-<%--            </div>--%>
-<%--        </div>--%>
-<%--        <div class="item_block">--%>
-<%--            <img class="items" src="./images/girls/t-shirts/2.png" alt="vans">--%>
-<%--            <div class="signature">--%>
-<%--                <div class="sign_text"><b>Футболка PUMA<br>550 грн.</b></div>--%>
-<%--                <div class="sign_img"><img src="./images/bag.png" alt="buy it"></div>--%>
-<%--            </div>--%>
-<%--        </div>--%>
-<%--        <div class="item_block">--%>
-<%--            <img class="items" src="./images/girls/t-shirts/3.png" alt="nike">--%>
-<%--            <div class="signature">--%>
-<%--                <div class="sign_text"><b>Футболка NB<br>450 грн.</b></div>--%>
-<%--                <div class="sign_img"><img src="./images/bag.png" alt="buy it"></div>--%>
-<%--            </div>--%>
-<%--        </div>--%>
-<%--        <div class="item_block">--%>
-<%--            <img class="items" src="./images/girls/t-shirts/4.png" alt="airJordan">--%>
-<%--            <div class="signature">--%>
-<%--                <div class="sign_text"><b>Футболка Adidas<br>349 грн.</b></div>--%>
-<%--                <div class="sign_img"><img src="./images/bag.png" alt="buy it"></div>--%>
-<%--            </div>--%>
-<%--        </div>--%>
+
     </div>
     <div id="sideBar" class="side-bar phide">
         <div  class="product-container" style="">
             <c:choose>
-                <c:when test="${productS != null}">
+                <c:when test="${productS != null && productS.size() > 0}">
                     <c:forEach var="product" items="${productS}">
                         <div class="_item">
                             <div class="img-cnt">
                                 <img src="${product.src}" alt="itm">
                             </div>
                             <div class="product-info">
-                                <div class="info-title">${product.name}</div>
-                                <div class="info-price"><div class="pp">Ціна :</div><div class="ppp"> ${product.price} грн</div></div>
+                                <div class="info-title"><fmt:message key="${product.type}"/> ${product.name}</div>
+                                <div class="info-price"><div class="pp"><fmt:message key="PRICE"/> :</div><div class="ppp"> ${product.price} <fmt:message key="UAH"/></div></div>
                                 <form action="deleteProduct" method="post" class="trash">
                                     <div class="trash-container">
                                         <input type="hidden" name="id" value="${product.id}">
@@ -214,15 +205,15 @@
                     <c:choose>
                         <c:when test="${userId != null}">
 
-                            <form action="buyProduct" method="post" class="button-_container"><input class="bb" type="submit" value="Купити"></form>
+                            <form action="buyProduct" method="post" class="button-_container"><input class="bb" type="submit" value="<fmt:message key="BUY"/>"></form>
                         </c:when>
                         <c:otherwise>
-                            <div data-bs-target="#modal-login" data-bs-toggle="modal" data-bs-dismiss="modal" class="button-_container"> <button class="bb">Купити</button></div>
+                            <div data-bs-target="#modal-login" data-bs-toggle="modal" data-bs-dismiss="modal" class="button-_container"> <button class="bb"><fmt:message key="BUY"/></button></div>
                         </c:otherwise>
                     </c:choose>
                 </c:when>
                 <c:otherwise>
-                    <div class="bag-container">Кошик пустий</div>
+                    <div class="bag-container"><fmt:message key="BAG_IS_EMPTY"/></div>
                 </c:otherwise>
             </c:choose>
         </div>
@@ -230,26 +221,6 @@
 </main>
 
 
-<%--<div id="sideBar" class="side-bar phide">--%>
-<%--    <c:forEach var="product" items="${productS}">--%>
-<%--        <div class="_item">--%>
-<%--            <div class="img-cnt">--%>
-<%--                <img src="${product.src}" alt="itm">--%>
-<%--            </div>--%>
-<%--            <div class="product-info">--%>
-<%--                <div class="info-title">${product.name}</div>--%>
-<%--                <div class="info-price"><div class="pp">Ціна :</div><div class="ppp"> ${product.price} грн</div></div>--%>
-<%--                <div class="trash">--%>
-<%--                    <div class="trash-container">--%>
-<%--                        <img src="./images/trash.png" alt="trash">--%>
-<%--                    </div>--%>
-<%--                </div>--%>
-<%--            </div>--%>
-<%--        </div>--%>
-
-<%--    </c:forEach>--%>
-<%--    <div class="button-_container"> <button>Купити</button></div>--%>
-<%--</div>--%>
 <footer id="footer">
     <div id="empty"></div>
     <div class="footer-container">
@@ -274,7 +245,7 @@
             </a>
         </div>
         <div class="copyright">
-            &copy; <strong><span class="black">Wear</span><span class="white">With</span><span class="yellow">Us</span></strong>. Усі права захищені
+            &copy; <strong><span class="black">Wear</span><span class="white">With</span><span class="yellow">Us</span></strong>. <fmt:message key="ALL_RIGHTS_RESERVED"/>
         </div>
     </div>
 </footer>
